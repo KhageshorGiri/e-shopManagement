@@ -1,0 +1,15 @@
+﻿
+
+
+body {
+    background-image: url('../images/inventory_bg.jpg');
+    backdrop-filter: blur(1px);
+}
+
+a{
+    text-decoration: none;
+}
+
+#loginForm{
+   
+}

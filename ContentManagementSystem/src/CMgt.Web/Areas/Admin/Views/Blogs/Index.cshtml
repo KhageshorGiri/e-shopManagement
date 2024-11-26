@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+
+<div class="card shadow mt-2">
+    <div class="card-body">
+        <div class="row">
+            <div class="d-flex justify-content-end my-3">
+                <a href="@Url.Action("Create", "Blogs", new{ area = "Admin"})" class="btn btn-primary"> Add New Blog</a>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered table-striped" id="tblBlogsIndex">
+                    <thead>
+                        <tr>
+                            <th> S.N</th>
+                            <th>Blog Title</th>
+                            <th> Blog Category / Sub-Category</th>
+                            <th>Short Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

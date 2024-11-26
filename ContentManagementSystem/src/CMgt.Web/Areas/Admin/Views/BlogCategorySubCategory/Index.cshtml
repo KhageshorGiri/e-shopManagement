@@ -1,0 +1,133 @@
+﻿@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+<div class="card shadow p-3 mt-2">
+    <div class="card-body">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="category-tab" data-bs-toggle="tab" data-bs-target="#category-body"
+                        type="button" role="tab" aria-controls="category" aria-selected="true">
+                    Category
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="subcategory-tab" data-bs-toggle="tab" data-bs-target="#subcategory-body"
+                        type="button" role="tab" aria-controls="subcategory" aria-selected="false">
+                    Sub-Category
+                </button>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="category-body" role="tabpanel" aria-labelledby="category-tab">
+                <div class="row">
+                    <div class="d-flex justify-content-end my-3">
+                        <button class="btn btn-primary" id="btnAddNewBlogCategory" data-bs-toggle="modal" data-bs-target="#AddNewBlogCategoryModal" >
+                            <i class="bi bi-plus-circle"></i> Add New Category
+                        </button>
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <table class="table table-sm table-bordered table-striped" id="tblBlogCategoryIntex">
+                                <thead>
+                                    <tr>
+                                        <th>S.N</th>
+                                        <th>Category Name</th>
+                                        <th>Short Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int sn = 0;}
+                                    @foreach (var category in ViewBag.AllCategories)
+                                    {
+                                         sn++;
+                                        <tr>
+                                            <td>@sn</td>
+                                            <td>@category.Category</td>
+                                            <td>@category.Description</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-id="@category.Id"><i class="bi bi-pencil-square"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger ms-1" data-id="@category.Id"><i class="bi bi-trash3"></i></button>
+                                            </td>
+                                        </tr>
+                                       
+                                    }
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="subcategory-body" role="tabpanel" aria-labelledby="subcategory-tab">
+                <div class="row">
+                    <div class="d-flex justify-content-end my-3">
+                        <button class="btn btn-primary" id="btnAddNewSubBlogCategory" data-bs-toggle="modal" data-bs-target="#AddNewBlogSubCategoryModal">
+                            <i class="bi bi-plus-circle"></i> Add New Sub Category
+                        </button>
+                    </div>
+                    <div class="col-md-12">
+                        <div>
+                            <table class="table table-sm table-bordered table-striped" id="tblBlogSubCategoryIntex">
+                                <thead>
+                                    <tr>
+                                        <th>S.N</th>
+                                        <th>SubCategory Name</th>
+                                        <th>Category Name</th>
+                                        <th>Short Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int idx = 0;}
+                                    @foreach (var subCategory in ViewBag.AllSubCategory)
+                                    {
+                                        idx++;
+                                        <tr>
+                                            <td>@idx</td>
+                                            <td>@subCategory.SubCategory</td>
+                                            <td>Category</td>
+                                            <td>@subCategory.Description</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-secondary" data-id="@subCategory.Id"><i class="bi bi-pencil-square"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger ms-1" data-id="@subCategory.Id"><i class="bi bi-trash3"></i></button>
+                                            </td>
+                                        </tr>
+                                    }
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load New Blog Category Partial Page -->
+@await Html.PartialAsync("_AddBlogCategory")
+
+<!-- Load New Blog Sub-Category Partial Page -->
+@await Html.PartialAsync("_AddBlogSubCategory")
+
+
+<!-- Edit Existing Blog Category Model -->
+
+
+<!-- Edit Existing Blog Sub-Category Model -->
+
+@section Scripts{
+
+    <script src="~/js/application/blogctegorysubcategory.js"></script>
+
+    <script>
+
+     
+
+    </script>
+
+}

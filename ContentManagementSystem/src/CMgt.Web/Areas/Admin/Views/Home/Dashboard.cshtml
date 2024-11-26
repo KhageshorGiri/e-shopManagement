@@ -1,0 +1,117 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3 px-2">
+        <div class="card shadow bg-info">
+            <div class="card-body">
+                <h5>Total Blog Post</h5>
+                <label class="d-flex justify-content-end"><span>120</span></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 px-2">
+        <div class="card shadow bg-primary">
+            <div class="card-body">
+                <h5>Total Engement</h5>
+                <label class="d-flex justify-content-end"><span>120</span></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 px-2">
+        <div class="card shadow bg-danger">
+            <div class="card-body">
+                <h5>Total Blog Post</h5>
+                <label class="d-flex justify-content-end"><span>120</span></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 px-2">
+        <div class="card shadow bg-success">
+            <div class="card-body">
+                <h5>Total Blog Post</h5>
+                <label class="d-flex justify-content-end"><span>120</span></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-lg-5">
+    <div class="col-md-8">
+        <div class="card shadow p-2">
+            <div class="card-body">
+                <div class="">
+                    <table class="table table-sm table-bordered table-striped table-hover" id="mostPopularBologIndexTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Blog Title</th>
+                                <th>Category</th>
+                                <th>Sub Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow p-2">
+            <div class="card-body">
+                <div class="">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $("#mostPopularBologIndexTable").DataTable();
+
+            const ctx = document.getElementById('myChart');
+
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green'],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+
+    </script>
+
+}
