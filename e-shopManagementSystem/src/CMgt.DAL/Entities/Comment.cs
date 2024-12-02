@@ -12,7 +12,7 @@ public class Comment : Base
     [StringLength(maximumLength:200)]
     public required string Message { get; set; }
 
-    [ForeignKey(nameof(Blog))]
-    public int BlogId { get; set; }
-    public Blog Blog { get; set; }
+    [ForeignKey(nameof(Product))]
+    public int ProductId { get; set; }
+    public Product Product { get; set; }
 }

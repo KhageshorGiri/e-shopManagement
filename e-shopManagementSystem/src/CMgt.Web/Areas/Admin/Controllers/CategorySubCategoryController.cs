@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace CMgt.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-public class BlogCategorySubCategoryController : Controller
+public class CategorySubCategoryController : Controller
 {
-    private readonly IBlogCategoryService _blogCategoryService;
-    private readonly IBlogSubCategoryService _blogSubCategoryService;
-    public BlogCategorySubCategoryController(IBlogCategoryService blogCategoryService,IBlogSubCategoryService blogSubCategoryService)
+    private readonly ICategoryService _blogCategoryService;
+    private readonly ISubCategoryService _blogSubCategoryService;
+    public CategorySubCategoryController(ICategoryService blogCategoryService,ISubCategoryService blogSubCategoryService)
     {
         _blogCategoryService = blogCategoryService;
         _blogSubCategoryService = blogSubCategoryService;
@@ -23,7 +23,7 @@ public class BlogCategorySubCategoryController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddBlogCategory([FromBody] BlogCategory blogCategory)
+    public async Task<IActionResult> AddBlogCategory([FromBody] Category blogCategory)
     {
         if (ModelState.IsValid)
         {
@@ -37,7 +37,7 @@ public class BlogCategorySubCategoryController : Controller
 
 
     [HttpPost]
-    public async Task<IActionResult> AddBlogSubCategory([FromBody] BlogSubCategory blogSubCategory)
+    public async Task<IActionResult> AddBlogSubCategory([FromBody] SubCategory blogSubCategory)
     {
         if (ModelState.IsValid)
         {

@@ -13,14 +13,12 @@ public static class ServiceDIConfigurationExtension
     {
 
         // Service
-        services.AddScoped<IBlogCategoryService, BlogCategoryService>();
-        services.AddScoped<IBlogSubCategoryService, BlogSubCategoryService>();
-        services.AddScoped<IBlogService, BlogService>();
+        services.AddScoped<CategoryService, CategoryService>();
+        services.AddScoped<SubCategoryService, SubCategoryService>();
 
         // Data
-        services.AddScoped<IBlogCategoryRepository, BlogCategoryRepository>();
-        services.AddScoped<IBlogSubCategoryRepository, BlogSubCategoryRepository>();
-        services.AddScoped<IBlogRepository, BlogRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
 
         return services;
     }

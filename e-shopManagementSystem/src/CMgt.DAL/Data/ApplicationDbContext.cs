@@ -14,9 +14,8 @@ public class ApplicationDbContext : IdentityDbContext<User>
 
     #region DbSet
 
-    public DbSet<Blog> Blogs { get; set; }
-    public DbSet<BlogCategory> BlogCategories { get; set; }
-    public DbSet<BlogSubCategory> BlogSubCategories { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<SubCategory> SubCategories { get; set; }
 
     #endregion
 }

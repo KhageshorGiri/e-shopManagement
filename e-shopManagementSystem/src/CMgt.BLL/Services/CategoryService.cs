@@ -4,26 +4,26 @@ using CMgt.DAL.IRepositoriesl;
 
 namespace CMgt.BLL.Services;
 
-public class BlogCategoryService : IBlogCategoryService
+public class CategoryService : ICategoryService
 {
-    private readonly IBlogCategoryRepository _blogCategoryRepository;
-    public BlogCategoryService(IBlogCategoryRepository blogCategoryRepository)
+    private readonly ICategoryRepository _blogCategoryRepository;
+    public CategoryService(ICategoryRepository blogCategoryRepository)
     {
         _blogCategoryRepository = blogCategoryRepository;
     }
 
-    public async Task<IEnumerable<BlogCategory>> GetAllBlogCategoriesAsync(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Category>> GetAllBlogCategoriesAsync(CancellationToken cancellationToken = default)
     {
         return await _blogCategoryRepository.GetAllBlogCategoriesAsync(cancellationToken);
     }
 
-    public async Task<BlogCategory?> GetBlogCategoryByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<Category?> GetBlogCategoryByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         return await _blogCategoryRepository.GetBlogCategoryByIdAsync(id, cancellationToken);
     }
 
 
-    public async Task AddBlogCategoryAsync(BlogCategory blogCategory, CancellationToken cancellationToken = default)
+    public async Task AddBlogCategoryAsync(Category blogCategory, CancellationToken cancellationToken = default)
     {
         blogCategory.CreatedBy = 1;
         blogCategory.ModifiedBy = 1;

@@ -4,25 +4,25 @@ using CMgt.DAL.IRepositories;
 
 namespace CMgt.BLL.Services;
 
-public class BlogSubCategoryService : IBlogSubCategoryService
+public class SubCategoryService : ISubCategoryService
 {
-    private readonly IBlogSubCategoryRepository _blogSubCategoryRepository;
-    public BlogSubCategoryService(IBlogSubCategoryRepository blogSubCategoryRepository)
+    private readonly ISubCategoryRepository _blogSubCategoryRepository;
+    public SubCategoryService(ISubCategoryRepository blogSubCategoryRepository)
     {
         _blogSubCategoryRepository = blogSubCategoryRepository;
     }
   
-    public async Task<IEnumerable<BlogSubCategory>> GetAllSubCategoriesAsync(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<SubCategory>> GetAllSubCategoriesAsync(CancellationToken cancellationToken = default)
     {
         return await _blogSubCategoryRepository.GetAllSubCategoriesAsync();
     }
 
-    public async Task<BlogSubCategory?> GetSubCategorYByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<SubCategory?> GetSubCategorYByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         return await _blogSubCategoryRepository.GetSubCategorYByIdAsync(id);
     }
 
-    public async Task AddNewSubCategoryAsync(BlogSubCategory blogSubCategory, CancellationToken cancellationToken = default)
+    public async Task AddNewSubCategoryAsync(SubCategory blogSubCategory, CancellationToken cancellationToken = default)
     {
         blogSubCategory.CreatedBy = 1;
         blogSubCategory.ModifiedBy = 1;
