@@ -4,185 +4,126 @@
 }
 
 
-<!--===== HEADER =====-->
-<header class="l-header">
-    <nav class="nav bd-grid">
-        <div>
-            <a href="#" class="nav__logo">
-                KG
-            </a>
-        </div>
-
-        <div class="nav__menu" id="nav-menu">
-            <ul class="nav__list">
-                <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-                <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
+    <div class="container">
+        <a class="navbar-brand text-primary fw-bold" href="#">E-Shop</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
             </ul>
-        </div>
-
-        <div class="nav__toggle" id="nav-toggle">
-            <i class='bx bx-menu'></i>
-        </div>
-    </nav>
-</header>
-
-
-<section class="main-bg-section section" id="home">
-    <div class="container ">
-        <div class="flex inner-main-section split">
-            <div class="left-section item-center flex-1">
-                <img src="~/images/home_bg.png">
-            </div>
-            <div class="right-section flex-1">
-                <h6>Khageshor Giri</h6>
-                <h1>I am <span> Software Engineer </span></h1>
-                <p class="home-description">
-                    Web developer in ASP.NET.
-                    I worked on projects at different scales.
-                    I lead and design as well as develop end-to-end user centered driven process that research, concepting, wireframing,
-                    interacting prototyping, user interface design.
-                </p>
-                <div>
-                    <a href="#contact" class="btn btn-primary">Contact</a>
-                </div>
-                <div class="home__social">
-                    <a href="" class="home__social-icon "><i class='bx bxl-facebook'></i></a>
-                    <a href="" class="home__social-icon home-social-icon-p"><i class='bx bxl-instagram'></i></a>
-                    <a href="" class="home__social-icon home-social-icon-p"><i class='bx bxl-linkedin'></i></a>
-                </div>
+            <!-- Login and Register Buttons -->
+            <div class="d-flex ms-lg-3">
+                <a href="#" class="btn btn-sm btn-outline-primary me-2">Login</a>
+                <a href="#" class="btn btn-sm btn-primary">Register</a>
             </div>
         </div>
     </div>
-</section>
+</nav>
 
-
-<section class="about-section section" id="about">
+<!-- Search Section -->
+<div class="text-dark py-4" style=" border-bottom: 2px solid #d6eaf8;">
     <div class="container">
-        <h2 class="text-center text-title">About</h2>
-        <div class="split about-split">
-            <div>
-                <h5><i>Khageshor Giri</i></h5>
-                <p>
-                    Web developer in ASP.NET.
-                    I worked on projects at different scales.
-                    I lead and design as well as develop end-to-end user centered driven process that research, concepting, wireframing,
-                    interacting prototyping, user interface design.
-                </p>
+        <form class="d-flex align-items-center justify-content-center">
+            <!-- Search Input -->
+            <input class="form-control me-3 shadow-sm rounded-pill"
+                   type="search"
+                   placeholder="Search for products, categories..."
+                   aria-label="Search"
+                   style="max-width: 600px; padding: 0.75rem; font-size: 1rem; background-color: #ffffff;
+                          border: 1px solid #ced4da; transition: border-color 0.3s ease;"
+            <!-- Search Button -->
+            <button class="btn btn-primary fw-bold px-4 py-2 rounded-pill shadow-sm" type="submit">
+                <i class="bi bi-search me-2"></i>Search
+            </button>
+        </form>
+    </div>
+</div>
+<!-- Hero Section with Background Image -->
+<div class="bg-light text-center p-5"
+     style="min-height:23rem; background-image: url('/images/home_bg.png'); background-size: cover; background-position: center;">
+    <h1 class="display-4 text-white">Welcome to E-Shop</h1>
+    <p class="lead text-white">Find the best products at unbeatable prices!</p>
+    <a href="#" class="btn btn-primary btn-lg">Shop Now</a>
+</div>
+
+
+<!-- Product Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+    <div class="row">
+        <!-- Product Card 1 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 1">
+                <div class="card-body">
+                    <h5 class="card-title">Product 1</h5>
+                    <p class="card-text">$29.99</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
             </div>
-
-            <div class="about-img">
-                <img src="~/images/home_bg.png">
+        </div>
+        <!-- Product Card 2 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 2">
+                <div class="card-body">
+                    <h5 class="card-title">Product 2</h5>
+                    <p class="card-text">$49.99</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        <!-- Product Card 3 -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 3">
+                <div class="card-body">
+                    <h5 class="card-title">Product 3</h5>
+                    <p class="card-text">$19.99</p>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
             </div>
         </div>
     </div>
-</section>
-
-
-
-<!--===== WORK =====-->
-<section class="work-section section" id="work">
-    <div class="container">
-        <h2 class="text-center text-title">Work</h2>
-
-        <div class="work__container flex split">
-            <a href="#" class="work__img">
-                <img src="~/images/home_bg.png" alt="">
-
-                <div>
-                    <h6 class="work-title" style="font-size:1rem;">First Blog</h6>
-                    <hr class="work-hr">
-                    <p class="work-description" style="font-size:0.82rem;">
-                        This is short description
-                    </p>
-                </div>
-            </a>
-
-            <a href="#" class="work__img">
-                <img src="~/images/home_bg.png" alt="">
-
-                <div>
-                    <h6 class="work-title" style="font-size:1rem;">First Blog</h6>
-                    <hr class="work-hr">
-                    <p class="work-description" style="font-size:0.82rem;">
-                        This is short description
-                    </p>
-                </div>
-            </a>
-
-            <a href="#" class="work__img">
-                <img src="~/images/home_bg.png" alt="">
-
-                <div>
-                    <h6 class="work-title" style="font-size:1rem;">First Blog</h6>
-                    <hr class="work-hr">
-                    <p class="work-description" style="font-size:0.82rem;">
-                        This is short description
-                    </p>
-                </div>
-            </a>
-
-            <a href="#" class="work__img">
-                <img src="~/images/home_bg.png" alt="">
-
-                <div>
-                    <h6 class="work-title" style="font-size:1rem;">First Blog</h6>
-                    <hr class="work-hr">
-                    <p class="work-description" style="font-size:0.82rem;">
-                        This is short description
-                    </p>
-                </div>
-            </a>
-        </div>
-
-        <div class="text-center">
-
-            <a href="@Url.Action("BlogDetails","Home")" class="btn btn-primary">Read More</a>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ===== Contact Section ====== -->
-<section class="contact-section section" id="contact">
-
-    <div class="container">
-        <h2 class="text-title text-center">Contact</h2>
-        <div class="contact__container bd-grid">
-            @Html.AntiForgeryToken()
-            <form action="" class="contact__form">
-                <input type="text" placeholder="Name" class="contact__input" id="Contact_Form_name" name="FullName">
-                <input type="email" placeholder="Email" class="contact__input" id="Contact_Form_email" name="Email">
-                <textarea cols="0" rows="10" class="contact__input" id="Contact_Form_message" name="Message"></textarea>
-                <div class="text-center form-inline mb-2" style="margin-top:0">
-                    <input type="checkbox" style="width:15px; height:15px" class="mr-1" id="checkBoxForMessage" value="None" />
-                    <label style="font-size:14px;">I accept all the trems and condition for sending message.</label>
-                </div>
-
-                <div class="mt-3">
-                    <input type="submit" value="Send Message" class="btn btn-primary btn-contact" id="SendMessage" disabled>
-                </div>
-
-            </form>
-        </div>
-    </div>
-
-</section>
+</div>
 
 
 <!--===== FOOTER =====-->
-<footer class="footer-section ">
-    <div class="container">
-        <h2 class="text-center text-title">Khageshor Giri</h2>
-        <div class="footer__social">
-            <a href="#" class="footer__icon"><i class='bx bxl-facebook'></i></a>
-            <a href="#" class="footer__icon"><i class='bx bxl-instagram'></i></a>
-            <a href="#" class="footer__icon"><i class='bx bxl-twitter'></i></a>
-        </div>
-        <p class="footer__copy">&#169; Khageshor Giri. All rigths reserved</p>
-    </div>
+<footer class="footer-section py-4" style="background-color: #f7f7f7;">
+    <div class="container text-center">
+        <!-- Title -->
+        <h2 class="text-primary fw-bold mb-3">Khageshor Giri</h2>
 
+        <!-- Social Media Icons -->
+        <div class="footer__social mb-3">
+            <a href="#" class="footer__icon me-3 text-dark" style="font-size: 1.5rem; text-decoration: none;">
+                <i class='bx bxl-facebook'></i>
+            </a>
+            <a href="#" class="footer__icon me-3 text-dark" style="font-size: 1.5rem; text-decoration: none;">
+                <i class='bx bxl-instagram'></i>
+            </a>
+            <a href="#" class="footer__icon text-dark" style="font-size: 1.5rem; text-decoration: none;">
+                <i class='bx bxl-twitter'></i>
+            </a>
+        </div>
+
+        <!-- Footer Text -->
+        <p class="footer__copy text-muted m-0">
+            &#169; Khageshor Giri. All rights reserved
+        </p>
+    </div>
 </footer>
