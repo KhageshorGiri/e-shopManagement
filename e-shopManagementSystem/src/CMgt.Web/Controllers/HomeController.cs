@@ -23,6 +23,11 @@ namespace CMgt.Web.Controllers
             return View();
         }
 
+        public IActionResult ProductDetails()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

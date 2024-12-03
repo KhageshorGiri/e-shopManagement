@@ -22,7 +22,7 @@ namespace CMgt.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("CMgt.DAL.Entities.Blog", b =>
+            modelBuilder.Entity("CMgt.DAL.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,59 +30,7 @@ namespace CMgt.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ShortDescription")
-                        .IsRequired()
-                        .HasMaxLength(800)
-                        .HasColumnType("nvarchar(800)");
-
-                    b.Property<int?>("SubCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubCategoryId");
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("CMgt.DAL.Entities.BlogCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Category")
+                    b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -106,10 +54,137 @@ namespace CMgt.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BlogCategories");
+                    b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("CMgt.DAL.Entities.BlogSubCategory", b =>
+            modelBuilder.Entity("CMgt.DAL.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("CMgt.DAL.Entities.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubCategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubCategoryId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("CMgt.DAL.Entities.ProductImages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("CMgt.DAL.Entities.SubCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -137,7 +212,7 @@ namespace CMgt.DAL.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SubCategory")
+                    b.Property<string>("SubCategoryName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -146,42 +221,7 @@ namespace CMgt.DAL.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("BlogSubCategories");
-                });
-
-            modelBuilder.Entity("CMgt.DAL.Entities.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BlogId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogId");
-
-                    b.ToTable("Comment");
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("CMgt.DAL.Entities.User", b =>
@@ -386,33 +426,42 @@ namespace CMgt.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CMgt.DAL.Entities.Blog", b =>
+            modelBuilder.Entity("CMgt.DAL.Entities.Comment", b =>
                 {
-                    b.HasOne("CMgt.DAL.Entities.BlogSubCategory", "SubCategory")
-                        .WithMany("Blogs")
-                        .HasForeignKey("SubCategoryId");
+                    b.HasOne("CMgt.DAL.Entities.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("SubCategory");
+                    b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("CMgt.DAL.Entities.BlogSubCategory", b =>
+            modelBuilder.Entity("CMgt.DAL.Entities.Product", b =>
                 {
-                    b.HasOne("CMgt.DAL.Entities.BlogCategory", "Category")
+                    b.HasOne("CMgt.DAL.Entities.SubCategory", null)
+                        .WithMany("Products")
+                        .HasForeignKey("SubCategoryId");
+                });
+
+            modelBuilder.Entity("CMgt.DAL.Entities.ProductImages", b =>
+                {
+                    b.HasOne("CMgt.DAL.Entities.Product", "Product")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("CMgt.DAL.Entities.SubCategory", b =>
+                {
+                    b.HasOne("CMgt.DAL.Entities.Category", "Category")
                         .WithMany("SubCategories")
                         .HasForeignKey("CategoryID");
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("CMgt.DAL.Entities.Comment", b =>
-                {
-                    b.HasOne("CMgt.DAL.Entities.Blog", "Blog")
-                        .WithMany("Comments")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Blog");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -466,19 +515,21 @@ namespace CMgt.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CMgt.DAL.Entities.Blog", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("CMgt.DAL.Entities.BlogCategory", b =>
+            modelBuilder.Entity("CMgt.DAL.Entities.Category", b =>
                 {
                     b.Navigation("SubCategories");
                 });
 
-            modelBuilder.Entity("CMgt.DAL.Entities.BlogSubCategory", b =>
+            modelBuilder.Entity("CMgt.DAL.Entities.Product", b =>
                 {
-                    b.Navigation("Blogs");
+                    b.Navigation("Comments");
+
+                    b.Navigation("Images");
+                });
+
+            modelBuilder.Entity("CMgt.DAL.Entities.SubCategory", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Product Cart Page";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+<!-- Product Details Page -->
+<div class="container py-5">
+    <!-- Product Info Section -->
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Product Image -->
+            <img src="~/images/home_bg.png" alt="Product Image" class="img-fluid rounded shadow-sm">
+        </div>
+        <div class="col-md-6">
+            <!-- Product Details -->
+            <h2 class="mb-3">Product Name</h2>
+            <p class="text-muted">Category: <span>Electronics</span></p>
+            <h3 class="text-primary">$150.00</h3>
+            <p class="lead mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor quam nec massa ullamcorper, nec eleifend nunc placerat.</p>
+
+            <!-- Quantity Input -->
+            <div class="d-flex align-items-center mb-4">
+                <label for="quantity" class="me-2">Quantity:</label>
+                <input type="number" id="quantity" value="1" class="form-control w-25" min="1">
+            </div>
+
+            <!-- Add to Cart Button -->
+            <button class="btn btn-primary btn-lg w-100">Add to Cart</button>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <!-- Product Reviews Section -->
+    <div class="reviews-section">
+        <h4 class="mb-4">Customer Reviews</h4>
+
+        <!-- Review Form -->
+        <div class="review-form mb-5">
+            <h5>Write a Review</h5>
+            <form>
+                <div class="mb-3">
+                    <label for="review" class="form-label">Review:</label>
+                    <textarea class="form-control" id="review" rows="4" placeholder="Write your review here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+        </div>
+
+        <!-- Review List -->
+        <div class="review-list">
+            <div class="review-item mb-4">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="mb-1">John Doe</h6>
+                        <span class="text-muted">5 Stars</span>
+                    </div>
+                    <p class="text-muted">2 days ago</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate mollis urna vel volutpat. Duis ut interdum felis.</p>
+            </div>
+
+            <div class="review-item mb-4">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="mb-1">Jane Smith</h6>
+                        <span class="text-muted">4 Stars</span>
+                    </div>
+                    <p class="text-muted">1 week ago</p>
+                </div>
+                <p>Great product! The quality is amazing, but I had some delivery issues. Overall, a good purchase.</p>
+            </div>
+
+            <!-- Add more reviews dynamically as needed -->
+        </div>
+    </div>
+</div>
