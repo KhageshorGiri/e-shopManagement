@@ -13,8 +13,8 @@ public static class ServiceDIConfigurationExtension
     {
 
         // Service
-        services.AddScoped<CategoryService, CategoryService>();
-        services.AddScoped<SubCategoryService, SubCategoryService>();
+        services.AddScoped<ICategoryService, CategoryService>();
+        services.AddScoped<ISubCategoryService, SubCategoryService>();
 
         // Data
         services.AddScoped<ICategoryRepository, CategoryRepository>();

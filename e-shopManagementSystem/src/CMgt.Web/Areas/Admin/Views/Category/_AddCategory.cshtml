@@ -2,15 +2,15 @@
 @model CMgt.DAL.Entities.Category
 
 <!-- Add New Blog Category Model -->
-<div class="modal fade" id="AddNewBlogCategoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="AddNewBlogCategoryLabel" aria-hidden="true">
+<div class="modal fade" id="AddNewCategoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="AddNewCategoryLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="AddNewBlogCategoryLabel">  <i class="bi bi-plus-circle"></i>  Add New Blog Category</h1>
+                <h1 class="modal-title fs-5" id="AddNewCategoryLabel">  <i class="bi bi-plus-circle"></i>  Add New Category</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="addNewBlogCategoryForm">
+                <form id="addNewCategoryForm">
                    <div class="row">
                        <div class="col-md-12 form-group">
                            <label asp-for="Category" class="form-label">Category <span class="text-danger">*</span></label>

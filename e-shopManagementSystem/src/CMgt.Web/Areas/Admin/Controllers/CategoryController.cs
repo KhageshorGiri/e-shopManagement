@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace CMgt.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
-public class CategorySubCategoryController : Controller
+public class CategoryController : Controller
 {
     private readonly ICategoryService _blogCategoryService;
     private readonly ISubCategoryService _blogSubCategoryService;
-    public CategorySubCategoryController(ICategoryService blogCategoryService,ISubCategoryService blogSubCategoryService)
+    public CategoryController(ICategoryService blogCategoryService, ISubCategoryService blogSubCategoryService)
     {
         _blogCategoryService = blogCategoryService;
         _blogSubCategoryService = blogSubCategoryService;

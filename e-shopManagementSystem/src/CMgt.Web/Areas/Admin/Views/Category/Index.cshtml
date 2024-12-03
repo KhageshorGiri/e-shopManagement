@@ -24,8 +24,8 @@
             <div class="tab-pane fade show active" id="category-body" role="tabpanel" aria-labelledby="category-tab">
                 <div class="row">
                     <div class="d-flex justify-content-end my-3">
-                        <button class="btn btn-primary" id="btnAddNewBlogCategory" data-bs-toggle="modal" data-bs-target="#AddNewBlogProductModal" >
-                            <i class="bi bi-plus-circle"></i> Add New Product
+                        <button class="btn btn-primary" id="btnAddNewCategory" data-bs-toggle="modal" data-bs-target="#AddNewCategoryModal">
+                            <i class="bi bi-plus-circle"></i> Add New Category
                         </button>
                     </div>
                     <div class="col-md-12">
@@ -40,10 +40,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{int sn = 0;}
+                                    @{
+                                        int sn = 0;
+                                    }
                                     @foreach (var category in ViewBag.AllCategories)
                                     {
-                                         sn++;
+                                        sn++;
                                         <tr>
                                             <td>@sn</td>
                                             <td>@category.Category</td>
@@ -53,9 +55,9 @@
                                                 <button class="btn btn-sm btn-outline-danger ms-1" data-id="@category.Id"><i class="bi bi-trash3"></i></button>
                                             </td>
                                         </tr>
-                                       
+
                                     }
-                                   
+
                                 </tbody>
                             </table>
                         </div>
@@ -65,7 +67,7 @@
             <div class="tab-pane fade" id="subcategory-body" role="tabpanel" aria-labelledby="subcategory-tab">
                 <div class="row">
                     <div class="d-flex justify-content-end my-3">
-                        <button class="btn btn-primary" id="btnAddNewSubBlogCategory" data-bs-toggle="modal" data-bs-target="#AddNewBlogSubCategoryModal">
+                        <button class="btn btn-primary" id="btnAddNewSubCategory" data-bs-toggle="modal" data-bs-target="#AddNewSubCategoryModal">
                             <i class="bi bi-plus-circle"></i> Add New Sub Category
                         </button>
                     </div>
@@ -82,7 +84,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{int idx = 0;}
+                                    @{
+                                        int idx = 0;
+                                    }
                                     @foreach (var subCategory in ViewBag.AllSubCategory)
                                     {
                                         idx++;
@@ -97,7 +101,7 @@
                                             </td>
                                         </tr>
                                     }
-                                 
+
                                 </tbody>
                             </table>
                         </div>
@@ -108,25 +112,19 @@
     </div>
 </div>
 
-<!-- Load New Blog Category Partial Page -->
-@await Html.PartialAsync("_AddBlogCategory")
+<!-- Load New Product Category Partial Page -->
+@await Html.PartialAsync("_AddCategory")
 
-<!-- Load New Blog Sub-Category Partial Page -->
-@await Html.PartialAsync("_AddBlogSubCategory")
+<!-- Load New Product Sub-Category Partial Page -->
+@await Html.PartialAsync("_AddSubCategory")
 
+@section Scripts {
 
-<!-- Edit Existing Blog Category Model -->
-
-
-<!-- Edit Existing Blog Sub-Category Model -->
-
-@section Scripts{
-
-    <script src="~/js/application/blogctegorysubcategory.js"></script>
+    <script src="~/js/application/ctegorysubcategory.js"></script>
 
     <script>
 
-     
+
 
     </script>
 
