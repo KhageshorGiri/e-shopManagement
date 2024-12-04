@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CMgt.shared.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CMgt.Web.Areas.Admin.Controllers
 {
@@ -11,6 +12,12 @@ namespace CMgt.Web.Areas.Admin.Controllers
         }
 
         public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProduct()
         {
             return View();
         }

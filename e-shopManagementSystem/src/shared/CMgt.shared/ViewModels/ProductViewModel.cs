@@ -23,6 +23,12 @@ public class ProductViewModel
     [Required]
     [StringLength(50)]
     public string Brand { get; set; }
+    
+    [Required]
+    public int CategoryId { get; set; }
+
+    [Required]
+    public int SubCategoryId { get; set; }
 
     [Required]
     [StringLength(350)]
