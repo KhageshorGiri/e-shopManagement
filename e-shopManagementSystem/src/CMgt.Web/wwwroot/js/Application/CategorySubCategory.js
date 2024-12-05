@@ -1,7 +1,7 @@
 ﻿
 // ========================= Blog Cagegory ==================== //
 // Initialize validation on the form
-$('#addNewBlogCategoryForm').validate({
+$('#addNewCategoryForm').validate({
     rules: {
         Category: {
             required: true,
@@ -34,28 +34,28 @@ $('#addNewBlogCategoryForm').validate({
 
 // Handle button click
 $('#btnAddNewCategory').on('click', function () {
-    if ($('#addNewBlogCategoryForm').valid()) {
+    if ($('#addNewCategoryForm').valid()) {
         // Serialize the form data
         const formData = {
-            Category: $('#addNewBlogCategoryForm input[name="Category"]').val(),
-            Description: $('#addNewBlogCategoryForm textarea[name="Description"]').val()
+            Category: $('#addNewCategoryForm input[name="Category"]').val(),
+            Description: $('#addNewCategoryForm textarea[name="Description"]').val()
         };
 
         // Make the AJAX call
         $.ajax({
-            url: '/Admin/BlogCategorySubCategory/AddBlogCategory',
+            url: '/Admin/CategorySubCategory/AddCategory',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function (response) {
                 // Handle success response
-                $('#AddNewBlogCategoryModal').modal('hide');
-                alert('Blog category added successfully!');
+                $('#AddNewCategoryModal').modal('hide');
+                alert('Category added successfully!');
                 location.reload();
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);
-                alert('Failed to add blog category. Please try again.');
+                alert('Failed to add category. Please try again.');
             }
         });
     } else {
@@ -110,29 +110,29 @@ $('#addNewBlogSubCategoryForm').validate({
 
 // Handle button click
 $('#btnAddNewSubCategory').on('click', function () {
-    if ($('#addNewBlogSubCategoryForm').valid()) {
+    if ($('#addNewSubCategoryForm').valid()) {
         // Serialize the form data
         const formData = {
-            SubCategory: $('#addNewBlogSubCategoryForm input[id="SubCategory"]').val(),
-            CategoryID: $('#addNewBlogSubCategoryForm input[id="CategoryID"]').val(),
-            Description: $('#addNewBlogSubCategoryForm textarea[id="SubCategoryDescription"]').val()
+            SubCategory: $('#addNewSubCategoryForm input[id="SubCategory"]').val(),
+            CategoryID: $('#addNewSubCategoryForm input[id="CategoryID"]').val(),
+            Description: $('#addNewSubCategoryForm textarea[id="SubCategoryDescription"]').val()
         };
 
         // Make the AJAX call
         $.ajax({
-            url: '/Admin/BlogCategorySubCategory/AddBlogSubCategory',
+            url: '/Admin/CategorySubCategory/AddSubCategory',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function (response) {
                 // Handle success response
                 //$('#AddNewBlogCategoryModal').modal('hide'); 
-                alert('Blog sub category added successfully!');
+                alert('Sub category added successfully!');
                 location.reload();
             },
             error: function (xhr, status, error) {
                 console.error('Error:', error);
-                alert('Failed to add blog sub category. Please try again.');
+                alert('Failed to add sub category. Please try again.');
             }
         });
     } else {

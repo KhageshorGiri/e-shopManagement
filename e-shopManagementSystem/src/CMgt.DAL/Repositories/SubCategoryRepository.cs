@@ -17,7 +17,7 @@ public class SubCategoryRepository : ISubCategoryRepository
         return await _dbContext.SubCategories.AsNoTracking().ToListAsync();
     }
 
-    public async Task<SubCategory?> GetSubCategorYByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<SubCategory?> GetSubCategoryByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         return await _dbContext.SubCategories.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
     }

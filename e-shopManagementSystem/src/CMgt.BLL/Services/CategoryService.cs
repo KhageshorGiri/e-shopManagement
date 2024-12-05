@@ -12,24 +12,24 @@ public class CategoryService : ICategoryService
         _blogCategoryRepository = blogCategoryRepository;
     }
 
-    public async Task<IEnumerable<Category>> GetAllBlogCategoriesAsync(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Category>> GetAllCategoriesAsync(CancellationToken cancellationToken = default)
     {
-        return await _blogCategoryRepository.GetAllBlogCategoriesAsync(cancellationToken);
+        return await _blogCategoryRepository.GetAllCategoriesAsync(cancellationToken);
     }
 
-    public async Task<Category?> GetBlogCategoryByIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<Category?> GetCategoryByIdAsync(int id, CancellationToken cancellationToken = default)
     {
-        return await _blogCategoryRepository.GetBlogCategoryByIdAsync(id, cancellationToken);
+        return await _blogCategoryRepository.GetCategoryByIdAsync(id, cancellationToken);
     }
 
 
-    public async Task AddBlogCategoryAsync(Category blogCategory, CancellationToken cancellationToken = default)
+    public async Task AddCategoryAsync(Category blogCategory, CancellationToken cancellationToken = default)
     {
         blogCategory.CreatedBy = 1;
         blogCategory.ModifiedBy = 1;
         blogCategory.CreatedDate = DateTime.UtcNow;
         blogCategory.ModifiedDate = DateTime.UtcNow;
 
-        await _blogCategoryRepository.AddNewBlogCatgory(blogCategory, cancellationToken);
+        await _blogCategoryRepository.AddNewCatgory(blogCategory, cancellationToken);
     }
 }

@@ -17,17 +17,17 @@ public class CategoryController : Controller
 
     public async Task<IActionResult> Index()
     {
-        ViewBag.AllCategories = await _blogCategoryService.GetAllBlogCategoriesAsync();
+        ViewBag.AllCategories = await _blogCategoryService.GetAllCategoriesAsync();
         ViewBag.AllSubCategory = await _blogSubCategoryService.GetAllSubCategoriesAsync();
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddBlogCategory([FromBody] Category blogCategory)
+    public async Task<IActionResult> AddCategory([FromBody] Category blogCategory)
     {
         if (ModelState.IsValid)
         {
-            await _blogCategoryService.AddBlogCategoryAsync(blogCategory);
+            await _blogCategoryService.AddCategoryAsync(blogCategory);
 
             return Ok(new { success = true, message = "Blog category added successfully." });
         }
@@ -37,7 +37,7 @@ public class CategoryController : Controller
 
 
     [HttpPost]
-    public async Task<IActionResult> AddBlogSubCategory([FromBody] SubCategory blogSubCategory)
+    public async Task<IActionResult> AddSubCategory([FromBody] SubCategory blogSubCategory)
     {
         if (ModelState.IsValid)
         {
