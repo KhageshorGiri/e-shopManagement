@@ -15,7 +15,7 @@ public class SubCategory : Base
     public required string Description { get; set; }
 
     [ForeignKey(nameof(Entities.Category))]
-    public int? CategoryID { get; set; }
+    public int CategoryID { get; set; }
     public Category? Category { get; set; }
 
     public IEnumerable<Product>? Products { get; set; }

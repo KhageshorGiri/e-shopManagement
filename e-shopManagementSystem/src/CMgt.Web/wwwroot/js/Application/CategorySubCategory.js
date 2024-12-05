@@ -37,7 +37,7 @@ $('#btnAddNewCategory').on('click', function () {
     if ($('#addNewCategoryForm').valid()) {
         // Serialize the form data
         const formData = {
-            Category: $('#addNewCategoryForm input[name="Category"]').val(),
+            CategoryName: $('#addNewCategoryForm input[name="CategoryName"]').val(),
             Description: $('#addNewCategoryForm textarea[name="Description"]').val()
         };
 
@@ -114,10 +114,12 @@ $('#btnAddNewSubCategory').on('click', function () {
     if ($('#addNewSubCategoryForm').valid()) {
         // Serialize the form data
         const formData = {
-            SubCategory: $('#addNewSubCategoryForm input[id="SubCategory"]').val(),
+            SubCategoryName: $('#addNewSubCategoryForm input[id="SubCategoryName"]').val(),
             CategoryID: $('#addNewSubCategoryForm input[id="CategoryID"]').val(),
             Description: $('#addNewSubCategoryForm textarea[id="SubCategoryDescription"]').val()
         };
+
+        console.log(formData);
 
         // Make the AJAX call
         $.ajax({

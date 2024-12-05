@@ -1,24 +1,32 @@
 ﻿using CMgt.BLL.IServices;
 using CMgt.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CMgt.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
 public class CategoryController : Controller
 {
-    private readonly ICategoryService _blogCategoryService;
-    private readonly ISubCategoryService _blogSubCategoryService;
-    public CategoryController(ICategoryService blogCategoryService, ISubCategoryService blogSubCategoryService)
+    private readonly ICategoryService _categoryService;
+    private readonly ISubCategoryService _subCategoryService;
+    public CategoryController(ICategoryService categoryService, ISubCategoryService subCategoryService)
     {
-        _blogCategoryService = blogCategoryService;
-        _blogSubCategoryService = blogSubCategoryService;
+        _categoryService = categoryService;
+        _subCategoryService = subCategoryService;
     }
 
     public async Task<IActionResult> Index()
     {
-        ViewBag.AllCategories = await _blogCategoryService.GetAllCategoriesAsync();
-        ViewBag.AllSubCategory = await _blogSubCategoryService.GetAllSubCategoriesAsync();
+        ViewData["CategoryForm"] = new Category() { CategoryName = string.Empty, Description = string.Empty };
+        ViewData["SubCategoryForm"] = new SubCategory() { SubCategoryName = string.Empty, Description = string.Empty };
+
+        var allCategories = await _categoryService.GetAllCategoriesAsync();
+
+        ViewBag.AllCategories = allCategories;
+        ViewBag.AllCategoriesSelectList = new SelectList(allCategories, "Id", "CategoryName");
+        ViewBag.AllSubCategories = await _subCategoryService.GetAllSubCategoriesAsync();
+        
         return View();
     }
 
@@ -27,9 +35,9 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _blogCategoryService.AddCategoryAsync(blogCategory);
+            await _categoryService.AddCategoryAsync(blogCategory);
 
-            return Ok(new { success = true, message = "Blog category added successfully." });
+            return Ok(new { success = true, message = "Category added successfully." });
         }
 
         return BadRequest(new { success = false, message = "Invalid data provided." });
@@ -41,8 +49,8 @@ public class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            await _blogSubCategoryService.AddNewSubCategoryAsync(blogSubCategory);
-            return Ok(new { success = true, message = "Blog sub category added successfully." });
+            await _subCategoryService.AddNewSubCategoryAsync(blogSubCategory);
+            return Ok(new { success = true, message = "Sub category added successfully." });
         }
 
         return BadRequest(new { success = false, message = "Invalid data provided." });

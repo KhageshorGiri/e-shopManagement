@@ -1,7 +1,7 @@
-﻿@{
+﻿@using CMgt.DAL.Entities
+@{
     Layout = "~/Views/Shared/_layout.cshtml";
 }
-
 
 <div class="card shadow p-3 mt-2">
     <div class="card-body">
@@ -48,7 +48,7 @@
                                         sn++;
                                         <tr>
                                             <td>@sn</td>
-                                            <td>@category.Category</td>
+                                            <td>@category.CategoryName</td>
                                             <td>@category.Description</td>
                                             <td>
                                                 <button class="btn btn-sm btn-outline-secondary" data-id="@category.Id"><i class="bi bi-pencil-square"></i></button>
@@ -87,17 +87,17 @@
                                     @{
                                         int idx = 0;
                                     }
-                                    @foreach (var subCategory in ViewBag.AllSubCategory)
+                                    @foreach (var sub in ViewBag.AllSubCategories)
                                     {
                                         idx++;
                                         <tr>
                                             <td>@idx</td>
-                                            <td>@subCategory.SubCategory</td>
+                                            <td>@sub.SubCategoryName</td>
                                             <td>Category</td>
-                                            <td>@subCategory.Description</td>
+                                            <td>@sub.Description</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-secondary" data-id="@subCategory.Id"><i class="bi bi-pencil-square"></i></button>
-                                                <button class="btn btn-sm btn-outline-danger ms-1" data-id="@subCategory.Id"><i class="bi bi-trash3"></i></button>
+                                                <button class="btn btn-sm btn-outline-secondary" data-id="@sub.Id"><i class="bi bi-pencil-square"></i></button>
+                                                <button class="btn btn-sm btn-outline-danger ms-1" data-id="@sub.Id"><i class="bi bi-trash3"></i></button>
                                             </td>
                                         </tr>
                                     }
@@ -113,16 +113,15 @@
 </div>
 
 <!-- Load New Product Category Partial Page -->
-@await Html.PartialAsync("_AddCategory")
+@await Html.PartialAsync("_AddCategory.cshtml", ViewData["CategoryForm"] as Category)
 
 <!-- Load New Product Sub-Category Partial Page -->
-@await Html.PartialAsync("_AddSubCategory")
+@await Html.PartialAsync("_AddSubCategory.cshtml", ViewData["SubCategoryForm"] as SubCategory)
 
 @section Scripts {
     <script src="~/js/application/categorysubcategory.js"></script>
+   
     <script>
-
-
 
     </script>
 

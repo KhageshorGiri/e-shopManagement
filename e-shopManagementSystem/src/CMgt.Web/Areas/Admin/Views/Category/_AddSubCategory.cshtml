@@ -18,9 +18,9 @@
                             <label asp-for="CategoryID" class="form-label">Category</label>
                             <select class="form-control"  id="CategoryOptions">
                                 <option value="">Select Category</option>
-                                @foreach (var cgr in ViewBag.AllCategories)
+                                @foreach (var cgr in ViewBag.AllCategoriesSelectList as SelectList)
                                 {
-                                    <option value="@cgr.Id">@cgr.Category</option>
+                                    <option value="@cgr.Value">@cgr.Text</option>
                                 }
                             </select>
                             <input id="CategoryID" name="CategoryID" class="form-control" asp-for="CategoryID" hidden/>
