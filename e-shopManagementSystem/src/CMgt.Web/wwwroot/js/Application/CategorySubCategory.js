@@ -3,7 +3,7 @@
 // Initialize validation on the form
 $('#addNewCategoryForm').validate({
     rules: {
-        Category: {
+        CategoryName: {
             required: true,
             maxlength: 50
         },
@@ -13,7 +13,7 @@ $('#addNewCategoryForm').validate({
         }
     },
     messages: {
-        Category: {
+        CategoryName: {
             required: "Category is required.",
             maxlength: "Category Name should be less than 50 characters."
         },
@@ -43,7 +43,7 @@ $('#btnAddNewCategory').on('click', function () {
 
         // Make the AJAX call
         $.ajax({
-            url: '/Admin/CategorySubCategory/AddCategory',
+            url: '/Admin/Category/AddCategory',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
@@ -71,9 +71,10 @@ $("#CategoryOptions").on('change', function () {
 });
 
 // Initialize validation on the form
-$('#addNewBlogSubCategoryForm').validate({
+$('#addNewSubCategoryForm').validate({
+    ignore: "", // This includes hidden fields in validation
     rules: {
-        SubCategory: {
+        SubCategoryName: {
             required: true,
             maxlength: 50
         },
@@ -86,7 +87,7 @@ $('#addNewBlogSubCategoryForm').validate({
         }
     },
     messages: {
-        Category: {
+        SubCategoryName: {
             required: "Sub Category is required.",
             maxlength: "Sub Category Name should be less than 50 characters."
         },
@@ -120,7 +121,7 @@ $('#btnAddNewSubCategory').on('click', function () {
 
         // Make the AJAX call
         $.ajax({
-            url: '/Admin/CategorySubCategory/AddSubCategory',
+            url: '/Admin/Category/AddSubCategory',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),

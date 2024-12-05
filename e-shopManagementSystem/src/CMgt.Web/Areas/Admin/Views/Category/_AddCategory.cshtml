@@ -13,11 +13,11 @@
                 <form id="addNewCategoryForm">
                    <div class="row">
                        <div class="col-md-12 form-group">
-                           <label asp-for="CategoryName" class="form-label">Category <span class="text-danger">*</span></label>
+                           <label asp-for="CategoryName" class="form-label">Category <label class="text-danger">*</label></label>
                             <input id="CategoryName" name="CategoryName" class="form-control" asp-for="CategoryName" />
                        </div>
                         <div class="col-md-12 form-group mt-2">
-                            <label asp-for="Description" class="form-label">Short Description <span class="text-danger">*</span> </label>
+                            <label asp-for="Description" class="form-label">Short Description <label class="text-danger  validator-sign">*</label> </label>
                             <textarea rows="2" id="Description" name="Description" class="form-control" asp-for="Description"></textarea>
                         </div>
                    </div>
