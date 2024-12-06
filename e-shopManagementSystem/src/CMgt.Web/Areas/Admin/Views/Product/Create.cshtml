@@ -18,13 +18,25 @@
 
                 <div class="col-md-3 form-group mb-2">
                     <label asp-for="CategoryId" class="form-label">Category</label>
-                    <input id="CategoryId" asp-for="CategoryId" class="form-control" />
+                    <select class="form-control" id="CategoryId">
+                        <option value="">Select Category</option>
+                        @foreach (var cgr in ViewBag.AllCategoriesSelectList as SelectList)
+                        {
+                            <option value="@cgr.Value">@cgr.Text</option>
+                        }
+                    </select>
                     <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-3 form-group mb-2">
                     <label asp-for="SubCategoryId" class="form-label">Sub Category</label>
-                    <input id="SubCategoryId" asp-for="SubCategoryId" class="form-control" />
+                    <select class="form-control" id="SubCategoryId">
+                        <option value="">Select Sub Category</option>
+                        @foreach (var cgr in ViewBag.AllSubCategoriesSelectList as SelectList)
+                        {
+                            <option value="@cgr.Value">@cgr.Text</option>
+                        }
+                    </select>
                     <span asp-validation-for="SubCategoryId" class="text-danger"></span>
                 </div>
 
@@ -102,7 +114,7 @@
 
             <!-- Submit Button -->
             <div class="d-flex justify-content-end me-4">
-                <button id="addNewProduct" type="submit" class="btn btn-primary">Add Product</button>
+                <button id="addNewProduct" type="button" class="btn btn-primary">Add Product</button>
             </div>
         </form>
     </div>
@@ -120,6 +132,11 @@
                 var imagePath = $("#ImageFiles").val();
                 var displayOrder = $("#DisplayOrder option:selected").val();
 
+                if(!imagePath){
+                    alert("Not valid data.");
+                    return false;
+                }
+
                 var tableRow = "<tr>";
                 tableRow += "<td> " + imagePath + " </td>";
                 tableRow += "<td>" + displayOrder + " </td>";
@@ -129,6 +146,32 @@
                 imgListTableBody.append(tableRow);
             });
 
+            // FormSubmit Event Handaling
+            $("#addNewProduct").on('click', function (event) {
+                event.preventDefault();
+                const imageListTable = document.querySelector("#imageListTable tbody");
+                const imagesArray = [];
+
+                imageListTable.querySelectorAll("tr").forEach((row, index) => {
+                    // Get File input
+                    const fileInput = row.querySelector('input[type="file"]')
+                    const file = fileInput ? fileInput.value : null;
+                    
+                    const displayOrderInput = row.querySelector('select');
+                    const displayOrder = displayOrderInput ? displayOrderInput.value : null;
+
+                    if (file && displayOrder) {
+                        imagesArray.push({
+                            ImagePath: file,
+                            DisplayOrder: displayOrder,
+                        });
+                    }
+                });
+
+               
+            });
+
+          
         });
 
     </script>
