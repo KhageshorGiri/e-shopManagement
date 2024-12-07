@@ -1,12 +1,12 @@
 ﻿
-
-using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace CMgt.shared.ViewModels;
 
+
 public class ProductViewModel
 {
+    public int Id { get; set; }
     [Required]
     [StringLength(150)]
     public string ProductName { get; set; }

@@ -1,6 +1,11 @@
 ﻿
+using CMgt.DAL.Entities;
+using CMgt.shared.ViewModels;
+
 namespace CMgt.BLL.IServices;
 
 public interface IProdcutService
 {
+    Task<IEnumerable<ProductViewModel>> GetAllProductsAsync(CancellationToken cancellationToken = default);
+    Task AddProductAsync(ProductViewModel product, CancellationToken cancellationToken = default);
 }

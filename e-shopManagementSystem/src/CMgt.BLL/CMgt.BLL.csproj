@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CMgt.DAL\CMgt.DAL.csproj" />
-    <ProjectReference Include="..\shared\CMgt.shared\CMgt.shared.csproj" />
   </ItemGroup>
 
 </Project>
