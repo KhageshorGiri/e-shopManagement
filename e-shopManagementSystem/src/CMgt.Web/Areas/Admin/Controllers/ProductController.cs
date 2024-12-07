@@ -30,9 +30,15 @@ namespace CMgt.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct()
+        public async Task<IActionResult> AddProduct([FromBody] ProductViewModel newProduct)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+
+                return Ok(new { success = true, message = "Product added successfully." });
+            }
+
+            return BadRequest(new { success = false, message = "Invalid data provided." });
         }
     }
 

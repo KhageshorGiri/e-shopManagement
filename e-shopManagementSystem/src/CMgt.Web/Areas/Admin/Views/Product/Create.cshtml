@@ -45,7 +45,7 @@
                     <select id="Size" asp-for="Size" class="form-select">
                         @foreach (var size in Enum.GetValues(typeof(ProductSize)))
                         {
-                            <option value="@size">@size</option>
+                            <option value="@(Convert.ToInt32(size))">@size</option>
                         }
                     </select>
                     <span asp-validation-for="Size" class="text-danger"></span>
@@ -75,7 +75,7 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
-                <hr class="mt-2"/>
+                <hr class="mt-2" />
 
                 <!-- Image DisplayOrder -->
                 <div class="col-md-12 mt-3">
@@ -91,13 +91,13 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <input asp-for="ImageFiles" class="form-control" type="file" />
+                                    <input id="ImageFile" class="form-control" type="file" />
                                 </td>
                                 <td>
                                     <select class="form-select" id="DisplayOrder">
                                         @foreach (var order in Enum.GetValues(typeof(DisplayOrder)))
                                         {
-                                            <option value="@order">@order</option>
+                                            <option value="@(Convert.ToInt32(order))">@(Convert.ToInt32(order))</option>
                                         }
                                     </select>
                                 </td>
@@ -129,10 +129,10 @@
         $(document).ready(function () {
 
             $("#btnAddImage").on('click', function () {
-                var imagePath = $("#ImageFiles").val();
+                var imagePath = $("#ImageFile").val();
                 var displayOrder = $("#DisplayOrder option:selected").val();
 
-                if(!imagePath){
+                if (!imagePath) {
                     alert("Not valid data.");
                     return false;
                 }
@@ -156,7 +156,7 @@
                     // Get File input
                     const fileInput = row.querySelector('input[type="file"]')
                     const file = fileInput ? fileInput.value : null;
-                    
+
                     const displayOrderInput = row.querySelector('select');
                     const displayOrder = displayOrderInput ? displayOrderInput.value : null;
 
@@ -168,10 +168,35 @@
                     }
                 });
 
+                let formData = {
+                    ProductName: document.getElementById('ProductName').value,
+                    Size: document.getElementById('Size').value,
+                    Price: parseFloat(document.getElementById('Price').value),
+                    StockQuantity: parseInt(document.getElementById('StockQuantity').value, 10),
+                    Brand: document.getElementById('Brand').value,
+                    CategoryId: parseInt(document.getElementById('CategoryId').value, 10),
+                    SubCategoryId: parseInt(document.getElementById('SubCategoryId').value, 10),
+                    Description: document.getElementById('Description').value,
+                    Images: imagesArray,
+                };
+
+                // server request
+                fetch('/Admin/Product/AddProduct', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest' //for identifying AJAX requests
+                    },
+                    body: JSON.stringify(formData)
+                }).then(Response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.error(error);
+                })
                
             });
 
-          
+
         });
 
     </script>

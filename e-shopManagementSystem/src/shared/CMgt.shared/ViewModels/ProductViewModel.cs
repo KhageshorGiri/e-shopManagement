@@ -35,7 +35,6 @@ public class ProductViewModel
     public string Description { get; set; }
 
     // Image Properties
-    public List<IFormFile> ImageFiles { get; set; } // For uploading images
 
     public List<ProductImageViewModel> Images { get; set; } = new();
 }
