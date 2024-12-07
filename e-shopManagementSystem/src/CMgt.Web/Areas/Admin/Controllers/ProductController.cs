@@ -1,4 +1,5 @@
 ﻿using CMgt.BLL.IServices;
+using CMgt.BLL.Services;
 using CMgt.shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,15 +11,18 @@ namespace CMgt.Web.Areas.Admin.Controllers
     {
         private readonly ICategoryService _categoryService;
         private readonly ISubCategoryService _subCategoryService;
-        public ProductController(ICategoryService categoryService, ISubCategoryService subCategoryService)
+        private readonly IProdcutService _prodcutService;
+        public ProductController(ICategoryService categoryService, ISubCategoryService subCategoryService, IProdcutService prodcutService)
         {
             _categoryService = categoryService;
             _subCategoryService = subCategoryService;
+            _prodcutService = prodcutService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var allProducts = await _prodcutService.GetAllProductsAsync();
+            return View(allProducts);
         }
 
         public async Task<IActionResult> Create()
@@ -34,7 +38,7 @@ namespace CMgt.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                await _prodcutService.AddProductAsync(newProduct);
                 return Ok(new { success = true, message = "Product added successfully." });
             }
 

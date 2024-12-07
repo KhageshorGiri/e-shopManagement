@@ -30,6 +30,8 @@ public class ProductRepository : IProductRepository
 
                 await _dbContext.ProductImages.AddRangeAsync(productImages);
                 await _dbContext.SaveChangesAsync(cancellationToken);
+
+                await transaction.CommitAsync();
             }
             catch (Exception ex)
             {
