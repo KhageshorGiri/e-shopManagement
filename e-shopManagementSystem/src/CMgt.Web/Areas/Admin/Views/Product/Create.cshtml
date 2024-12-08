@@ -18,7 +18,7 @@
 
                 <div class="col-md-3 form-group mb-2">
                     <label asp-for="CategoryId" class="form-label">Category</label>
-                    <select class="form-control" id="CategoryId">
+                    <select asp-for="CategoryId" class="form-control" id="CategoryId">
                         <option value="">Select Category</option>
                         @foreach (var cgr in ViewBag.AllCategoriesSelectList as SelectList)
                         {
@@ -30,7 +30,7 @@
 
                 <div class="col-md-3 form-group mb-2">
                     <label asp-for="SubCategoryId" class="form-label">Sub Category</label>
-                    <select class="form-control" id="SubCategoryId">
+                    <select asp-for="SubCategoryId" class="form-control" id="SubCategoryId">
                         <option value="">Select Sub Category</option>
                         @foreach (var cgr in ViewBag.AllSubCategoriesSelectList as SelectList)
                         {
@@ -47,7 +47,7 @@
 
                 <div class="col-md-3 form-group mb-2">
                     <label asp-for="DisplayOrder" class="form-label">DisplayOrder</label>
-                    <select class="form-select" id="DisplayOrder">
+                    <select asp-for="DisplayOrder" class="form-select" id="DisplayOrder">
                         @foreach (var order in Enum.GetValues(typeof(DisplayOrder)))
                         {
                             <option value="@(Convert.ToInt32(order))">@(Convert.ToInt32(order))</option>
@@ -107,44 +107,6 @@
     <script>
 
         $(document).ready(function () {
-
-            // // FormSubmit Event Handaling
-            // $("#addNewProduct").on('click', function (event) {
-            //     event.preventDefault();
-
-            //     let formData = {
-            //         ProductName: document.getElementById('ProductName').value,
-            //         Size: document.getElementById('Size').value,
-            //         Price: parseFloat(document.getElementById('Price').value),
-            //         StockQuantity: parseInt(document.getElementById('StockQuantity').value, 10),
-            //         Brand: document.getElementById('Brand').value,
-            //         CategoryId: parseInt(document.getElementById('CategoryId').value, 10),
-            //         SubCategoryId: parseInt(document.getElementById('SubCategoryId').value, 10),
-            //         Description: document.getElementById('Description').value,
-            //         ImagesFile: $('#ImagesFile')[0].files[0],
-            //         DisplayOrder: document.getElementById('DisplayOrder').value,
-            //     };
-
-            //     // Send data using fetch
-            //     fetch('/Admin/Product/AddProduct', {
-            //         method: 'POST',
-            //         body: formData, // Send FormData object
-            //     })
-            //         .then(response => {
-            //             if (response.ok) {
-            //                 return response.json(); // Process the response
-            //             } else {
-            //                 throw new Error('Something went wrong');
-            //             }
-            //         })
-            //         .then(data => {
-            //             console.log(data); // Success response
-            //         })
-            //         .catch(error => {
-            //             console.error('Error:', error); // Error handling
-            //         });
-               
-            // });
 
 
         });

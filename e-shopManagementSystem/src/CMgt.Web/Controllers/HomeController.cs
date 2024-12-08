@@ -1,3 +1,5 @@
+using CMgt.BLL.IServices;
+using CMgt.BLL.Services;
 using CMgt.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -7,14 +9,16 @@ namespace CMgt.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IProdcutService _productService;
+        public HomeController(ILogger<HomeController> logger, IProdcutService prodcutService)
         {
             _logger = logger;
+            _productService = prodcutService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.allProducts = await _productService.GetAllProductsAsync();
             return View();
         }
 

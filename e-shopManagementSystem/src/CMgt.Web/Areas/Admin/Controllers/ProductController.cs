@@ -39,7 +39,7 @@ namespace CMgt.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 await _prodcutService.AddProductAsync(newProduct);
-                return RedirectToAction("Index","Prodcut");
+                return RedirectToAction("Index");
             }
 
             return BadRequest(new { success = false, message = "Invalid data provided." });

@@ -35,7 +35,7 @@ public class ProductViewModel
     public string Description { get; set; }
 
     // Image Properties
-
+    public string? ImageLocation { get; set; } = string.Empty;
     public IFormFile ImagesFile { get; set; }
 
     public int DisplayOrder { get; set; }
