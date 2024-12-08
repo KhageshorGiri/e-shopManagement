@@ -77,7 +77,7 @@
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <li class="nav-item active">
-                                    <a class="nav-link text-danger" href="@Url.Action("Logout", "Account")">
+                                    <a class="nav-link text-danger" href="@Url.Action("Logout", "Account", new{ area = "Identity"})">
                                         Logout
                                     </a>
                                 </li>
