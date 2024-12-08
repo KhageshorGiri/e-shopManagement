@@ -1,6 +1,7 @@
 using CMgt.BLL.IServices;
 using CMgt.BLL.Services;
 using CMgt.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -27,9 +28,10 @@ namespace CMgt.Web.Controllers
             return View();
         }
 
-        public IActionResult ProductDetails(int id)
+        public async Task<IActionResult> ProductDetails(int id)
         {
-            return View();
+            var productDetails = await _productService.GetProductByIdAsync(id);
+            return View(productDetails);
         }
 
         public IActionResult Privacy()

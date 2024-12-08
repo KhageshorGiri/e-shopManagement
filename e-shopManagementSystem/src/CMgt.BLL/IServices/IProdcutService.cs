@@ -7,5 +7,7 @@ namespace CMgt.BLL.IServices;
 public interface IProdcutService
 {
     Task<IEnumerable<ProductViewModel>> GetAllProductsAsync(CancellationToken cancellationToken = default);
+
+    Task<ProductViewModel> GetProductByIdAsync(int id, CancellationToken cancellationToken = default);
     Task AddProductAsync(ProductViewModel product, CancellationToken cancellationToken = default);
 }
