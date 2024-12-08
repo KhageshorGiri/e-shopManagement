@@ -3,16 +3,20 @@ using CMgt.BLL.IServices;
 using CMgt.DAL.Entities;
 using CMgt.DAL.Entities.Enums;
 using CMgt.DAL.IRepositories;
+using CMgt.shared.Helpers;
 using CMgt.shared.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CMgt.BLL.Services;
 
 public class ProdcutService : IProdcutService
 {
     private readonly IProductRepository _productRepository;
-    public ProdcutService(IProductRepository productRepository)
+    private readonly IWebHostEnvironment _env;
+    public ProdcutService(IProductRepository productRepository, IWebHostEnvironment evn)
     {
         _productRepository = productRepository;
+        _env = evn;
     }
     public async Task AddProductAsync(ProductViewModel product, CancellationToken cancellationToken = default)
     {
@@ -27,11 +31,14 @@ public class ProdcutService : IProdcutService
         };
 
         List<ProductImages> images = new List<ProductImages>();
-        foreach(var image in product.Images)
+        var webRootPath = _env.WebRootPath;
+        var imageLocation = SaveImage.SaveFile(webRootPath, "ProductImages", product.ImagesFile);
+        images.Add(new ProductImages
         {
-            images.Add(new() { ImagePath = image.ImagePath, DisplayOrder = (DisplayOrder)image.DisplayOrder });
-        }
-
+            ImagePath = imageLocation,
+            DisplayOrder = (DisplayOrder)product.DisplayOrder
+        });
+        
         await _productRepository.AddProductAsync(newProduct, images);
     }
 

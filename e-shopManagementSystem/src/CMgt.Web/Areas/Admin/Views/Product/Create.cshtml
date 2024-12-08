@@ -10,7 +10,7 @@
         <form asp-action="AddProduct" asp-controller="Product" asp-area="Admin" method="post" enctype="multipart/form-data">
             <!-- Product Details -->
             <div class="row">
-                <div class="col-md-6 form-group mb-2">
+                <div class="col-md-12 form-group mb-2">
                     <label asp-for="ProductName" class="form-label">Product Name</label>
                     <input id="ProductName" asp-for="ProductName" class="form-control" />
                     <span asp-validation-for="ProductName" class="text-danger"></span>
@@ -39,7 +39,22 @@
                     </select>
                     <span asp-validation-for="SubCategoryId" class="text-danger"></span>
                 </div>
+                <div class="col-md-3 form-group mb-2">
+                    <label asp-for="ImagesFile" class="form-label">Image</label>
+                    <input id="ImagesFile" asp-for="ImagesFile" class="form-control" type="file" />
+                    <span asp-validation-for="ImagesFile" class="text-danger"></span>
+                </div>
 
+                <div class="col-md-3 form-group mb-2">
+                    <label asp-for="DisplayOrder" class="form-label">DisplayOrder</label>
+                    <select class="form-select" id="DisplayOrder">
+                        @foreach (var order in Enum.GetValues(typeof(DisplayOrder)))
+                        {
+                            <option value="@(Convert.ToInt32(order))">@(Convert.ToInt32(order))</option>
+                        }
+                    </select>
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                </div>
                 <div class="col-md-3 form-group mb-2">
                     <label asp-for="Size" class="form-label">Size</label>
                     <select id="Size" asp-for="Size" class="form-select">
@@ -75,46 +90,11 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
 
-                <hr class="mt-2" />
-
-                <!-- Image DisplayOrder -->
-                <div class="col-md-12 mt-3">
-                    <h5>Add Product Images</h5>
-                    <table class="table" id="imageListTable">
-                        <thead>
-                            <tr>
-                                <th>Image Path</th>
-                                <th>Display Order</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input id="ImageFile" class="form-control" type="file" />
-                                </td>
-                                <td>
-                                    <select class="form-select" id="DisplayOrder">
-                                        @foreach (var order in Enum.GetValues(typeof(DisplayOrder)))
-                                        {
-                                            <option value="@(Convert.ToInt32(order))">@(Convert.ToInt32(order))</option>
-                                        }
-                                    </select>
-                                </td>
-                                <td>
-                                    <button type="button" id="btnAddImage" class="btn btn-sm btn-outline-primary">
-                                        <i class="bi bi-plus-circle"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
 
             <!-- Submit Button -->
             <div class="d-flex justify-content-end me-4">
-                <button id="addNewProduct" type="button" class="btn btn-primary">Add Product</button>
+                <button id="addNewProduct" type="submit" class="btn btn-primary">Add Product</button>
             </div>
         </form>
     </div>
@@ -128,73 +108,43 @@
 
         $(document).ready(function () {
 
-            $("#btnAddImage").on('click', function () {
-                var imagePath = $("#ImageFile").val();
-                var displayOrder = $("#DisplayOrder option:selected").val();
+            // // FormSubmit Event Handaling
+            // $("#addNewProduct").on('click', function (event) {
+            //     event.preventDefault();
 
-                if (!imagePath) {
-                    alert("Not valid data.");
-                    return false;
-                }
+            //     let formData = {
+            //         ProductName: document.getElementById('ProductName').value,
+            //         Size: document.getElementById('Size').value,
+            //         Price: parseFloat(document.getElementById('Price').value),
+            //         StockQuantity: parseInt(document.getElementById('StockQuantity').value, 10),
+            //         Brand: document.getElementById('Brand').value,
+            //         CategoryId: parseInt(document.getElementById('CategoryId').value, 10),
+            //         SubCategoryId: parseInt(document.getElementById('SubCategoryId').value, 10),
+            //         Description: document.getElementById('Description').value,
+            //         ImagesFile: $('#ImagesFile')[0].files[0],
+            //         DisplayOrder: document.getElementById('DisplayOrder').value,
+            //     };
 
-                var tableRow = "<tr>";
-                tableRow += "<td> " + imagePath + " </td>";
-                tableRow += "<td>" + displayOrder + " </td>";
-                tableRow += " </tr>";
-
-                var imgListTableBody = $("#imageListTable tbody");
-                imgListTableBody.append(tableRow);
-            });
-
-            // FormSubmit Event Handaling
-            $("#addNewProduct").on('click', function (event) {
-                event.preventDefault();
-                const imageListTable = document.querySelector("#imageListTable tbody");
-                const imagesArray = [];
-
-                imageListTable.querySelectorAll("tr").forEach((row, index) => {
-                    // Get File input
-                    const fileInput = row.querySelector('input[type="file"]')
-                    const file = fileInput ? fileInput.value : null;
-
-                    const displayOrderInput = row.querySelector('select');
-                    const displayOrder = displayOrderInput ? displayOrderInput.value : null;
-
-                    if (file && displayOrder) {
-                        imagesArray.push({
-                            ImagePath: file,
-                            DisplayOrder: displayOrder,
-                        });
-                    }
-                });
-
-                let formData = {
-                    ProductName: document.getElementById('ProductName').value,
-                    Size: document.getElementById('Size').value,
-                    Price: parseFloat(document.getElementById('Price').value),
-                    StockQuantity: parseInt(document.getElementById('StockQuantity').value, 10),
-                    Brand: document.getElementById('Brand').value,
-                    CategoryId: parseInt(document.getElementById('CategoryId').value, 10),
-                    SubCategoryId: parseInt(document.getElementById('SubCategoryId').value, 10),
-                    Description: document.getElementById('Description').value,
-                    Images: imagesArray,
-                };
-
-                // server request
-                fetch('/Admin/Product/AddProduct', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest' //for identifying AJAX requests
-                    },
-                    body: JSON.stringify(formData)
-                }).then(Response => {
-                    console.log(response);
-                }).catch(error => {
-                    console.error(error);
-                })
+            //     // Send data using fetch
+            //     fetch('/Admin/Product/AddProduct', {
+            //         method: 'POST',
+            //         body: formData, // Send FormData object
+            //     })
+            //         .then(response => {
+            //             if (response.ok) {
+            //                 return response.json(); // Process the response
+            //             } else {
+            //                 throw new Error('Something went wrong');
+            //             }
+            //         })
+            //         .then(data => {
+            //             console.log(data); // Success response
+            //         })
+            //         .catch(error => {
+            //             console.error('Error:', error); // Error handling
+            //         });
                
-            });
+            // });
 
 
         });

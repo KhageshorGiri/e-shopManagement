@@ -1,8 +1,8 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace CMgt.shared.ViewModels;
-
 
 public class ProductViewModel
 {
@@ -36,7 +36,9 @@ public class ProductViewModel
 
     // Image Properties
 
-    public List<ProductImageViewModel> Images { get; set; } = new();
+    public IFormFile ImagesFile { get; set; }
+
+    public int DisplayOrder { get; set; }
 }
 
 // ViewModel for Images
@@ -44,8 +46,10 @@ public class ProductImageViewModel
 {
     [Required]
     [StringLength(150)]
-    public string ImagePath { get; set; }
+    public IFormFile ImagePath { get; set; }
 
     [Required]
     public int DisplayOrder { get; set; }
+
+    public string ImageLocation { get; set; }
 }

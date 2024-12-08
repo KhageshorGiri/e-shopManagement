@@ -53,11 +53,7 @@ public class ProductRepository : IProductRepository
                  Size = Convert.ToInt32(p.Size),
                  Brand = p.Brand,
                  Description = p.Description,
-                 Images = p.Images.Select( i=> new ProductImageViewModel
-                 {
-                     ImagePath = i.ImagePath,
-                     DisplayOrder = Convert.ToInt32(i.DisplayOrder)
-                 }).ToList()
+               
                  
              }).AsNoTracking()
              .ToListAsync(cancellationToken);

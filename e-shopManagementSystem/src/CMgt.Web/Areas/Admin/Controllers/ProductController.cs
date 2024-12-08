@@ -34,12 +34,12 @@ namespace CMgt.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct([FromBody] ProductViewModel newProduct)
+        public async Task<IActionResult> AddProduct([FromForm] ProductViewModel newProduct)
         {
             if (ModelState.IsValid)
             {
                 await _prodcutService.AddProductAsync(newProduct);
-                return Ok(new { success = true, message = "Product added successfully." });
+                return RedirectToAction("Index","Prodcut");
             }
 
             return BadRequest(new { success = false, message = "Invalid data provided." });
