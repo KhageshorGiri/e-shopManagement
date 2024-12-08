@@ -1,6 +1,7 @@
 using CMgt.BLL.DependencyConfiguration;
 using CMgt.DAL.Data;
 using CMgt.DAL.Entities;
+using CMgt.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +12,10 @@ var connectionString = builder.Configuration.GetConnectionString("SqlServerConne
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddDefaultTokenProviders()
+    .AddRoles<IdentityRole<int>>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -22,6 +23,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddServiceDIConfiguration();
 
 var app = builder.Build();
+
+// Db Seeding
+app.Seed().Wait();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -36,7 +40,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthentication()
+    .UseAuthorization();
 
 app.MapControllerRoute(
     name: "areas",
