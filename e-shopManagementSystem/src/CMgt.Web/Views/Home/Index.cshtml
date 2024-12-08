@@ -4,36 +4,6 @@
 }
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
-    <div class="container">
-        <a class="navbar-brand text-primary fw-bold" href="#">E-Shop</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Home/Cart">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Help&Support</a>
-                </li>
-            </ul>
-            <!-- Login and Register Buttons -->
-            <div class="d-flex ms-lg-3">
-                <a href="/Identity/Account/Login" class="btn btn-sm btn-outline-info me-2">Login</a>
-                <a href="/Identity/Account/Register" class="btn btn-sm btn-outline-info">Register</a>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <!-- Search Section -->
 <div class="text-dark py-4" style=" border-bottom: 2px solid #d6eaf8;">
     <div class="container">
@@ -76,7 +46,7 @@
                     <div class="card-body">
                         <h5 class="card-title">@product.ProductName</h5>
                         <p class="card-text">$(@product.Price)</p>
-                        <a href="#" class="btn btn-primary" data-productid="@product.Id">Add to Cart</a>
+                        <a href="@Url.Action("ProductDetails","Home", new {id = @product.Id})" class="btn btn-primary">Add to Cart</a>
                     </div>
                 </div>
             </div>
@@ -85,29 +55,3 @@
     </div>
 </div>
 
-
-<!--===== FOOTER =====-->
-<footer class="footer-section py-4" style="background-color: #f7f7f7;">
-    <div class="container text-center">
-        <!-- Title -->
-        <h2 class="text-primary fw-bold mb-3">Khageshor Giri</h2>
-
-        <!-- Social Media Icons -->
-        <div class="footer__social mb-3">
-            <a href="#" class="footer__icon me-3 text-dark" style="font-size: 1.5rem; text-decoration: none;">
-                <i class='bx bxl-facebook'></i>
-            </a>
-            <a href="#" class="footer__icon me-3 text-dark" style="font-size: 1.5rem; text-decoration: none;">
-                <i class='bx bxl-instagram'></i>
-            </a>
-            <a href="#" class="footer__icon text-dark" style="font-size: 1.5rem; text-decoration: none;">
-                <i class='bx bxl-twitter'></i>
-            </a>
-        </div>
-
-        <!-- Footer Text -->
-        <p class="footer__copy text-muted m-0">
-            &#169; Khageshor Giri. All rights reserved
-        </p>
-    </div>
-</footer>
