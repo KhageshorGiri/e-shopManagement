@@ -1,5 +1,4 @@
 ﻿
-
 namespace CMgt.shared.ViewModels;
 
 public class OrderDto
@@ -7,3 +6,9 @@ public class OrderDto
     public int Quantity { get; set; }
     public int ProductId { get; set; }
 }
+
+
+public class OrderViewModel
+{
+}
+

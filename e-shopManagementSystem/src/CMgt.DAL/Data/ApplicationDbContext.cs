@@ -16,6 +16,7 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
     #region DbSet
 
     public DbSet<Product> Products { get; set; }
+    public DbSet<Order> Orders { get; set; }
     public DbSet<Comment> Comments { get; set; }
     public DbSet<ProductImages> ProductImages { get; set; }
     public DbSet<Category> Categories { get; set; }
