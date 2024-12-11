@@ -16,6 +16,7 @@
         <div class="col-md-6">
             <!-- Product Details -->
             <h2 class="mb-3">@Model.ProductName</h2>
+            <input id="productID" class="form-control" value="@Model.Id" readonly hidden/>
            @*  <p class="text-muted">Category: <span>@Model.CategoryId</span></p> *@
             <h3 class="text-primary">$@Model.Price</h3>
             <p class="lead mb-4">@Model.Description</p>
@@ -27,13 +28,13 @@
             </div>
 
             <!-- Add to Cart Button and Buy Now Button-->
-            <button class="btn btn-primary btn-lg w-100">Buy Now</button>
+            <button id="btnBuyNow" class="btn btn-primary btn-lg w-100">Buy Now</button>
            @*  <button class="btn btn-info btn-lg w-100">Add to Cart</button> *@
         </div>
     </div>
 
     <hr class="my-5">
-
+@* 
     <!-- Product Reviews Section -->
     <div class="reviews-section">
         <h4 class="mb-4">Customer Reviews</h4>
@@ -76,5 +77,41 @@
 
             <!-- Add more reviews dynamically as needed -->
         </div>
-    </div>
+    </div> *@
 </div>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+
+            const buyButton = document.getElementById('btnBuyNow');
+
+            buyButton.addEventListener('click', function () {
+                
+                quantity = $("#quantity").val();
+                productId = $("#productID").val();
+
+                $.ajax({
+                    contentType: "application/json",
+                    url: "/Home/PlaceOrder",
+                    method: "POST",
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        Quantity: parseInt(quantity),
+                        ProductId: parseInt(productId)
+                    }),
+                    success: function (response) {
+                        window.location.assign('/home/myorders');
+                    },
+                    error: function(response){
+                        alert("Error!! Something went wrong.");
+                    }
+                });
+
+            });
+
+        })
+
+    </script>
+}

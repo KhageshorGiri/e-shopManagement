@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "My Ordres";
+    Layout = "~/Views/Shared/_LayoutWeb.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Order Details</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#12345</td>
+                    <td>Wireless Headphones</td>
+                    <td>2</td>
+                    <td>$99.98</td>
+                    <td><span class="badge bg-success">Delivered</span></td>
+                    <td>2024-12-01</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-primary">View</a>
+                        <a href="#" class="btn btn-sm btn-danger">Cancel</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#12346</td>
+                    <td>Smartphone Case</td>
+                    <td>1</td>
+                    <td>$15.99</td>
+                    <td><span class="badge bg-warning text-dark">In Transit</span></td>
+                    <td>2024-12-03</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-primary">View</a>
+                        <a href="#" class="btn btn-sm btn-danger">Cancel</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#12347</td>
+                    <td>USB-C Charger</td>
+                    <td>1</td>
+                    <td>$24.99</td>
+                    <td><span class="badge bg-info text-dark">Processing</span></td>
+                    <td>2024-12-05</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-primary">View</a>
+                        <a href="#" class="btn btn-sm btn-danger">Cancel</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

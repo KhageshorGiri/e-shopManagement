@@ -1,5 +1,6 @@
 using CMgt.BLL.IServices;
 using CMgt.BLL.Services;
+using CMgt.shared.ViewModels;
 using CMgt.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +24,18 @@ namespace CMgt.Web.Controllers
             return View();
         }
 
+        public IActionResult MyOrders()
+        {
+            return View();
+        }
         public IActionResult Cart()
         {
+            return View();
+        }
+
+        public async Task<IActionResult> AllProducts()
+        {
+            ViewBag.allProducts = await _productService.GetAllProductsAsync();
             return View();
         }
 
@@ -32,6 +43,12 @@ namespace CMgt.Web.Controllers
         {
             var productDetails = await _productService.GetProductByIdAsync(id);
             return View(productDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PlaceOrder([FromBody] OrderDto newOrder)
+        {
+            return Json(new { success=true, messgae="Order Placed."});
         }
 
         public IActionResult Privacy()
