@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+@inject IHttpContextAccessor _httpContextAccessor;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -36,8 +39,15 @@
                 </ul>
                 <!-- Login and Register Buttons -->
                 <div class="d-flex ms-lg-3">
-                    <a href="/Identity/Account/Login" class="btn btn-sm btn-outline-info me-2">Login</a>
-                    <a href="/Identity/Account/Register" class="btn btn-sm btn-outline-info">Register</a>
+                    @if (string.IsNullOrWhiteSpace(_httpContextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier)))
+                    {
+                        <a href="/Identity/Account/Login" class="btn btn-sm btn-outline-info me-2">Login</a>
+                        <a href="/Identity/Account/Register" class="btn btn-sm btn-outline-info">Register</a>
+                    }
+                    else
+                    {
+                        <a href="/Identity/Account/Logout" class="btn btn-sm btn-outline-danger me-2">Logout</a>
+                    }
                 </div>
             </div>
         </div>
