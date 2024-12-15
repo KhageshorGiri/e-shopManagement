@@ -1,4 +1,5 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMgt.DAL.Entities;
@@ -6,6 +7,8 @@ namespace CMgt.DAL.Entities;
 public class Order : Base
 {
     public DateTime OrderDate { get; set; }
+    [Required]
+    public int Quantity { get; set; }
 
     [ForeignKey(nameof(User))]
     public int UserId { get; set; }
