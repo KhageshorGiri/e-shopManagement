@@ -31,4 +31,11 @@ public class SubCategoryService : ISubCategoryService
         await _blogSubCategoryRepository.AddNewSubCategoryAsync(blogSubCategory);
     }
 
+    public async Task DeleteSubCategory(int id, CancellationToken cancellationToken = default)
+    {
+        var existing = await _blogSubCategoryRepository.GetSubCategoryByIdAsync(id);
+        if (existing != null){
+            await _blogSubCategoryRepository.DeleteSubCategory(existing);
+        }
+    }
 }

@@ -11,31 +11,42 @@
                 <table class="table table-sm table-bordered table-striped" id="tblOrderIndexTable">
                     <thead>
                         <tr>
-                            <th>S.N</th>
+                            <th>Order Id</th>
                             <th>User Name</th>
                             <th>Product Name</th>
                             <th>Size</th>
                             <th>Brand</th>
                             <th>Price</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var order in Model)
+                        @foreach (var order in Model)
                         {
                             <tr>
-                                <td>#</td>
+                                <td>#@order.Id</td>
                                 <td>@order.UserName</td>
                                 <td>@order.ProductName</td>
                                 <td>@order.Size</td>
                                 <td>@order.Brand</td>
                                 <td>$@order.Price</td>
                                 <td>
-                                    <button class="btn btn-sm btn-outline-secondary" data-id="1"><i class="bi bi-pencil-square"></i></button>
+                                    @if (order.Status == 1)
+                                    {
+                                        <label class="text-info">Pending</label>
+                                    }
+                                    @if (order.Status == 2)
+                                    {
+                                        <label class="text-success">Completed</label>
+                                    }
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-secondary order-status" data-id="@order.Id"><i class="bi bi-pencil-square"></i></button>
                                 </td>
                             </tr>
                         }
-                       
+
                     </tbody>
                 </table>
             </div>
@@ -43,11 +54,44 @@
     </div>
 </div>
 
+
+@await Html.PartialAsync("_UpdateOrderStatus.cshtml")
+
 @section Scripts {
 
     <script>
 
+        $(".order-status").on('click', function(){
+            var orderId = $(this).data("id")
+            $("#orderIdSpan").text(orderId);
+            $("#UpdateOrderStatusModal").modal('show');
+        });
 
+
+        $("#btnUpdateOrderStatus").on('click', function(){
+             // Serialize the form data
+            const formData = {
+                OrderId: parseInt($('#orderIdSpan').text()),
+                Status: $('#OrderStatusOption option:selected').val()
+            };
+
+            // Make the AJAX call
+            $.ajax({
+                url: '/Admin/Order/UpdateOrder',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function (response) {
+                    // Handle success response
+                    alert('Order Update successfully!');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                    alert('Failed to add category. Please try again.');
+                }
+            });
+        });
 
     </script>
 

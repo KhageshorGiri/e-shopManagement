@@ -39,18 +39,30 @@ public class OrderRepository : IOrderRepository
            .Include(o=>o.User)
            .Select(o => new OrderViewModel
            {
+               Id = o.Id,
                OrderDate = o.OrderDate,
                ProductName = o.Product.ProductName,
                Quantity = o.Quantity,
                Price = o.Product.Price,
                Size = o.Product.Size.ToString(),
                Brand = o.Product.Brand,
-               UserName = o.User.UserName
+               UserName = o.User.UserName,
+               Status = Convert.ToInt32(o.Status)
            })
            .AsNoTracking()
            .ToListAsync(cancellationToken);
 
         return allIOrders;
+    }
+
+    public async Task<Order> GetOrdersByIdAsync(int id, CancellationToken cancellationToken = default)
+    {
+        var order = await _dbContext.Orders
+            .Where(o=>o.Id == id)
+           .AsNoTracking()
+           .FirstOrDefaultAsync(cancellationToken);
+
+        return order;
     }
 
     public async Task<IEnumerable<OrderViewModel>> GetAllOrdersByUserIdAsync(int userId, CancellationToken cancellationToken = default)
@@ -60,16 +72,36 @@ public class OrderRepository : IOrderRepository
             .Include(o => o.Product)
             .Select(o => new OrderViewModel
             {
+                Id = o.Id,
                 OrderDate = o.OrderDate,
                 ProductName = o.Product.ProductName,
                 Quantity = o.Quantity,
                 Price = o.Product.Price,
                 Size = o.Product.Size.ToString(),
                 Brand = o.Product.Brand,
+                Status = Convert.ToInt32(o.Status)
             })
             .AsNoTracking()
             .ToListAsync(cancellationToken);
 
         return allIOrders;
+    }
+
+    public async Task UpdateOrderAsync(Order updateOrder, CancellationToken cancellationToken = default)
+    {
+        using (var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken))
+        {
+            try
+            {
+                _dbContext.Orders.Update(updateOrder);
+                await _dbContext.SaveChangesAsync(cancellationToken);
+                await transaction.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
     }
 }

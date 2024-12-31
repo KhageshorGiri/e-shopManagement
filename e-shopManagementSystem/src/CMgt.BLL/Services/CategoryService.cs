@@ -22,7 +22,6 @@ public class CategoryService : ICategoryService
         return await _blogCategoryRepository.GetCategoryByIdAsync(id, cancellationToken);
     }
 
-
     public async Task AddCategoryAsync(Category blogCategory, CancellationToken cancellationToken = default)
     {
         blogCategory.CreatedBy = 1;
@@ -31,5 +30,14 @@ public class CategoryService : ICategoryService
         blogCategory.ModifiedDate = DateTime.UtcNow;
 
         await _blogCategoryRepository.AddNewCatgory(blogCategory, cancellationToken);
+    }
+
+    public async Task DeleteCategory(int id, CancellationToken cancellationToken = default)
+    {
+        var existing = await _blogCategoryRepository.GetCategoryByIdAsync(id);
+        if (existing != null)
+        {
+            await _blogCategoryRepository.DeleteCategory(existing);
+        }
     }
 }

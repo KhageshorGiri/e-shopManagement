@@ -1,4 +1,5 @@
 ﻿
+using CMgt.DAL.Entities.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,6 +10,9 @@ public class Order : Base
     public DateTime OrderDate { get; set; }
     [Required]
     public int Quantity { get; set; }
+
+    [EnumDataType(typeof(OrderStatus))]
+    public OrderStatus Status { get; set; }
 
     [ForeignKey(nameof(User))]
     public int UserId { get; set; }

@@ -11,9 +11,10 @@
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Order ID</th>
+                    <th>Status</th>
                     <th scope="col">Product</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">Price (Per Item)</th>
                     <th scope="col">Order Date</th>
                 </tr>
             </thead>
@@ -21,7 +22,17 @@
                 @foreach(var order in Model)
                 {
                     <tr>
-                        <td>#1234</td>
+                        <td>#@order.Id</td>
+                        <td>
+                            @if (order.Status == 1)
+                            {
+                                <label class="text-info">Pending</label>
+                            }
+                            @if (order.Status == 2)
+                            {
+                                <label class="text-success">Completed</label>
+                            }
+                        </td>
                         <td>@order.ProductName</td>
                         <td>@order.Quantity</td>
                         <td>$@order.Price</td>

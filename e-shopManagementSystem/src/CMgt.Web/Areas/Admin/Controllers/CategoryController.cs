@@ -55,4 +55,18 @@ public class CategoryController : Controller
 
         return BadRequest(new { success = false, message = "Invalid data provided." });
     }
+
+    [HttpGet]
+    public async Task<IActionResult> DeleteCategory(int id)
+    {
+        await _categoryService.DeleteCategory(id);
+        return Ok(new { success = true, message = "Category deleted successfully." });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> DeleteSubCategory(int id)
+    {
+        await _subCategoryService.DeleteSubCategory(id);
+        return Ok(new { success = true, message = "Sub category deleted successfully." });
+    }
 }

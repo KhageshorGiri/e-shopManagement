@@ -1,4 +1,6 @@
 ﻿using CMgt.BLL.IServices;
+using CMgt.BLL.Services;
+using CMgt.shared.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMgt.Web.Areas.Admin.Controllers;
@@ -15,5 +17,17 @@ public class OrderController : Controller
     {
         var allOrders = await _orderService.GetAllOrdersAsync();
         return View(allOrders);
+    }
+
+    [HttpPost] 
+    public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderDto order)
+    {
+        if (ModelState.IsValid)
+        {
+            await _orderService.UpdateOrderAsync(order);
+            return Ok(new { success = true, message = "Order status updated successfully." });
+        }
+
+        return BadRequest(new { success = false, message = "Invalid data provided." });
     }
 }

@@ -8,4 +8,6 @@ public interface ICategoryRepository
     Task<Category?> GetCategoryByIdAsync(int id, CancellationToken cancellationToken = default);
 
     Task AddNewCatgory(Category category, CancellationToken cancellationToken = default);
+
+    Task DeleteCategory(Category category, CancellationToken cancellationToken = default);
 }

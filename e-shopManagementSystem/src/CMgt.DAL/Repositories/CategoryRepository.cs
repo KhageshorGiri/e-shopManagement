@@ -44,4 +44,9 @@ public class CategoryRepository : ICategoryRepository
         }
     }
 
+    public async Task DeleteCategory(Category category, CancellationToken cancellationToken = default)
+    {
+        _dbContext.Categories.Remove(category);
+        await _dbContext.SaveChangesAsync();
+    }
 }

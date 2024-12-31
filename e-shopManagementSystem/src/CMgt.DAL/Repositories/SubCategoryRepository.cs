@@ -39,4 +39,9 @@ public class SubCategoryRepository : ISubCategoryRepository
        }
     }
 
+    public async Task DeleteSubCategory(SubCategory blogSubCategory, CancellationToken cancellationToken = default)
+    {
+        _dbContext.SubCategories.Remove(blogSubCategory);
+        await _dbContext.SaveChangesAsync();
+    }
 }

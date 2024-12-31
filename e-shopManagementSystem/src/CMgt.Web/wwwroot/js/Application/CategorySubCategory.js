@@ -141,3 +141,50 @@ $('#btnAddNewSubCategory').on('click', function () {
     } else {
     }
 });
+
+// Delete Category
+$(".delete-category").on('click', function () {
+    var categoryId = $(this).data('id')
+
+    // Make the AJAX call
+    $.ajax({
+        url: '/Admin/Category/DeleteCategory',
+        type: 'GET',
+        contentType: 'application/json',
+        data: { id: categoryId },
+        success: function (response) {
+            // Handle success response
+            //$('#AddNewBlogCategoryModal').modal('hide'); 
+            alert(response.message);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error('Error:', error);
+            alert('Failed to delete category. Please try again.');
+        }
+    });
+});
+
+
+// Delete SubCategory
+$(".delete-subcategory").on('click', function () {
+    var subCatgoryId = $(this).data('id')
+
+    // Make the AJAX call
+    $.ajax({
+        url: '/Admin/Category/DeleteSubCategory',
+        type: 'GET',
+        contentType: 'application/json',
+        data: { id: subCatgoryId },
+        success: function (response) {
+            // Handle success response
+            //$('#AddNewBlogCategoryModal').modal('hide'); 
+            alert(response.message);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error('Error:', error);
+            alert('Failed to delete category. Please try again.');
+        }
+    });
+});

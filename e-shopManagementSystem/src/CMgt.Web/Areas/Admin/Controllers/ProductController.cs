@@ -44,6 +44,11 @@ namespace CMgt.Web.Areas.Admin.Controllers
 
             return BadRequest(new { success = false, message = "Invalid data provided." });
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            return View();
+        }
     }
 
 

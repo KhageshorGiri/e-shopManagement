@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace CMgt.Web.Controllers
 {
@@ -14,11 +15,13 @@ namespace CMgt.Web.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IProdcutService _productService;
         private readonly IOrderService _orderService;
-        public HomeController(ILogger<HomeController> logger, IProdcutService prodcutService, IOrderService orderService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public HomeController(ILogger<HomeController> logger, IProdcutService prodcutService, IOrderService orderService, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _productService = prodcutService;
             _orderService = orderService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IActionResult> Index()
@@ -30,7 +33,12 @@ namespace CMgt.Web.Controllers
         [Authorize(Roles = "User")]
         public async Task<IActionResult> MyOrders()
         {
-            var allOrders = await _orderService.GetAllOrdersByUserIdAsync(1);
+            var user = _httpContextAccessor?.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (user is null)
+                throw new ArgumentNullException("User not found");
+
+            var allOrders = await _orderService.GetAllOrdersByUserIdAsync(Convert.ToInt32(user));
             return View(allOrders);
         }
 

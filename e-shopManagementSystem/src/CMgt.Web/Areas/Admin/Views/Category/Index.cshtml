@@ -51,8 +51,8 @@
                                             <td>@category.CategoryName</td>
                                             <td>@category.Description</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-secondary" data-id="@category.Id"><i class="bi bi-pencil-square"></i></button>
-                                                <button class="btn btn-sm btn-outline-danger ms-1" data-id="@category.Id"><i class="bi bi-trash3"></i></button>
+                                               @*  <button class="btn btn-sm btn-outline-secondary" data-id="@category.Id"><i class="bi bi-pencil-square"></i></button> *@
+                                                <button class="btn btn-sm btn-outline-danger delete-category ms-1" data-id="@category.Id"><i class="bi bi-trash3"></i></button>
                                             </td>
                                         </tr>
 
@@ -96,8 +96,8 @@
                                             <td>Category</td>
                                             <td>@sub.Description</td>
                                             <td>
-                                                <button class="btn btn-sm btn-outline-secondary" data-id="@sub.Id"><i class="bi bi-pencil-square"></i></button>
-                                                <button class="btn btn-sm btn-outline-danger ms-1" data-id="@sub.Id"><i class="bi bi-trash3"></i></button>
+                                               @*  <button class="btn btn-sm btn-outline-secondary" data-id="@sub.Id"><i class="bi bi-pencil-square"></i></button> *@
+                                                <button class="btn btn-sm btn-outline-danger delete-subcategory ms-1" data-id="@sub.Id"><i class="bi bi-trash3"></i></button>
                                             </td>
                                         </tr>
                                     }

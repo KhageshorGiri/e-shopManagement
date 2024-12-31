@@ -1,0 +1,36 @@
+﻿@using CMgt.DAL.Entities.Enums
+
+
+<!--Update Order Model Model -->
+<div class="modal fade" id="UpdateOrderStatusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="UpdateOrderStatusLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="UpdateOrderStatusLabel">  <i class="bi bi-plus-circle"></i>  Update Order Status</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateOrderForm">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label>Order Id : #<span id="orderIdSpan"></span></label>
+                        </div>
+                        <div class="col-md-12 form-group mt-2">
+                            <label>Status</label>
+                            <select class="form-control" id="OrderStatusOption">
+                                @foreach (var odrStatus in Enum.GetValues(typeof(OrderStatus)))
+                                {
+                                    <option value="@(Convert.ToInt32(odrStatus))">@odrStatus.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer mt-2">
+                    <button id="btnUpdateOrderStatus" type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

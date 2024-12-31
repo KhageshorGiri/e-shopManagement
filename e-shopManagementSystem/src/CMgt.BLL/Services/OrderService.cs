@@ -1,5 +1,6 @@
 ﻿using CMgt.BLL.IServices;
 using CMgt.DAL.Entities;
+using CMgt.DAL.Entities.Enums;
 using CMgt.DAL.IRepositories;
 using CMgt.shared.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -28,9 +29,10 @@ public class OrderService : IOrderService
         Order order = new()
         {
             OrderDate = DateTime.Now,
-            UserId = 1,
+            UserId = Convert.ToInt32(user),
             Quantity = newOrder.Quantity,
-            ProductId = newOrder.ProductId
+            ProductId = newOrder.ProductId,
+            Status = OrderStatus.Pending,
         };
 
         await _orderRepository.AddNewOrderAsync(order, cancellationToken);
@@ -41,8 +43,24 @@ public class OrderService : IOrderService
         return await _orderRepository.GetAllOrdersAsync(cancellationToken);
     }
 
+    public async Task<Order> GetOrdersByIdAsync(int id, CancellationToken cancellationToken = default)
+    {
+        return await _orderRepository.GetOrdersByIdAsync(id);
+    }
+
     public async Task<IEnumerable<OrderViewModel>> GetAllOrdersByUserIdAsync(int userId, CancellationToken cancellationToken = default)
     {
         return await _orderRepository.GetAllOrdersByUserIdAsync(userId, cancellationToken);
+    }
+
+
+    public async Task UpdateOrderAsync(UpdateOrderDto updateOrder, CancellationToken cancellationToken = default)
+    {
+        var existingOrder = await _orderRepository.GetOrdersByIdAsync(updateOrder.OrderId);
+        if (existingOrder != null)
+        {
+            existingOrder.Status = (OrderStatus)updateOrder.Status;
+            await _orderRepository.UpdateOrderAsync(existingOrder);
+        }
     }
 }
