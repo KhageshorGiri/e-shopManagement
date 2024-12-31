@@ -1,11 +1,13 @@
 ﻿using CMgt.BLL.IServices;
 using CMgt.BLL.Services;
 using CMgt.shared.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CMgt.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles = "Admin")]
 public class OrderController : Controller
 {
     private readonly IOrderService _orderService;

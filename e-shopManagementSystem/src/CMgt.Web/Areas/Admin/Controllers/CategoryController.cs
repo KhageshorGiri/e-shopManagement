@@ -1,11 +1,13 @@
 ﻿using CMgt.BLL.IServices;
 using CMgt.DAL.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CMgt.Web.Areas.Admin.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles = "Admin")]
 public class CategoryController : Controller
 {
     private readonly ICategoryService _categoryService;
