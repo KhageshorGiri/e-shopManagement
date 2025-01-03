@@ -60,6 +60,33 @@ public class ProductRepository : IProductRepository
         return allProducts;
     }
 
+    public async Task<IEnumerable<ProductViewModel>> GetAllProductsFilterAsync(string filter, CancellationToken cancellationToken = default)
+    {
+        var query = _dbContext.Products.AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(filter))
+        {
+            query = query.Where(p => p.ProductName.Contains(filter));
+        }
+
+        var allProducts = await query
+            .Include(p => p.Images)
+             .Select(p => new ProductViewModel
+             {
+                 Id = p.Id,
+                 ProductName = p.ProductName,
+                 Price = p.Price,
+                 StockQuantity = p.StockQuantity,
+                 Size = Convert.ToInt32(p.Size),
+                 Brand = p.Brand,
+                 Description = p.Description,
+                 ImageLocation = p.Images.FirstOrDefault().ImagePath
+             }).AsNoTracking()
+             .ToListAsync(cancellationToken);
+
+        return allProducts;
+    }
+
     public async Task<ProductViewModel> GetProductByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         var productDetails = await _dbContext.Products.Where(p=>p.Id == id)

@@ -47,6 +47,11 @@ public class ProdcutService : IProdcutService
         return await _productRepository.GetAllProductsAsync(cancellationToken);
     }
 
+    public async Task<IEnumerable<ProductViewModel>> GetAllProductsFilterAsync(string filter, CancellationToken cancellationToken = default)
+    {
+        return await _productRepository.GetAllProductsFilterAsync(filter);
+    }
+
     public async Task<ProductViewModel> GetProductByIdAsync(int id, CancellationToken cancellationToken = default)
     {
         return await _productRepository.GetProductByIdAsync(id, cancellationToken);

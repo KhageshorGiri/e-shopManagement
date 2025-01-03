@@ -6,6 +6,7 @@ namespace CMgt.DAL.IRepositories;
 public interface IProductRepository
 {
     Task<IEnumerable<ProductViewModel>> GetAllProductsAsync(CancellationToken cancellationToken = default);
+    Task<IEnumerable<ProductViewModel>> GetAllProductsFilterAsync(string filter ,CancellationToken cancellationToken = default);
     Task<ProductViewModel> GetProductByIdAsync(int id, CancellationToken cancellationToken = default);
     Task AddProductAsync(Product product, List<ProductImages> productImages, CancellationToken cancellationToken = default);
 }

@@ -30,6 +30,12 @@ namespace CMgt.Web.Controllers
             return View();
         }
 
+        public async Task<IActionResult> FilterPoducts(string filter)
+        {
+            var filtredProducts = await _productService.GetAllProductsFilterAsync(filter);
+            return View("_ProductList", filtredProducts);
+        }
+
         [Authorize(Roles = "User")]
         public async Task<IActionResult> MyOrders()
         {
