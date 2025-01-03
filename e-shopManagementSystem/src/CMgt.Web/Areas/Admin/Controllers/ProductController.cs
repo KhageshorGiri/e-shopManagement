@@ -2,6 +2,7 @@
 using CMgt.BLL.Services;
 using CMgt.shared.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -47,9 +48,29 @@ namespace CMgt.Web.Areas.Admin.Controllers
             return BadRequest(new { success = false, message = "Invalid data provided." });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditProduct([FromForm] ProductViewModel newProduct)
+        {
+            await _prodcutService.UpdateProductAsync(newProduct);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            return View();
+
+            ViewBag.AllCategoriesSelectList = new SelectList(await _categoryService.GetAllCategoriesAsync(), "Id", "CategoryName");
+            ViewBag.AllSubCategoriesSelectList = new SelectList(await _subCategoryService.GetAllSubCategoriesAsync(), "Id", "SubCategoryName");
+
+            var product = await _prodcutService.GetProductByIdAsync(id);
+            return View("_EditProductDetails", product);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _prodcutService.DeleteProductAsync(id);
+            return Ok(new { success = true, message = "Product deleted." });
         }
     }
 

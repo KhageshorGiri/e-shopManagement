@@ -40,8 +40,8 @@
                                 <td>@product.Price</td>
                                 <td>@product.Description</td>
                                 <td>
-                                    <button class="btn btn-sm btn-outline-secondary" data-id="@product.Id"><i class="bi bi-pencil-square"></i></button>
-                                    <button class="btn btn-sm btn-outline-danger ms-1" data-id="@product.Id"><i class="bi bi-trash3"></i></button>
+                                    <button class="btn btn-sm btn-outline-secondary edit-product" data-id="@product.Id"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger ms-1 delete-product" data-id="@product.Id"><i class="bi bi-trash3"></i></button>
                                 </td>
                             </tr>
                         }
@@ -53,11 +53,62 @@
     </div>
 </div>
 
+<div id="editProduct-section">
+
+</div>
+
 @section Scripts {
 
     <script>
 
+        $(document).ready(function(){
 
+
+            $(".edit-product").on('click', function(){
+                var productId = $(this).data("id");
+
+                // Make the AJAX call
+                $.ajax({
+                    url: '/Admin/Product/Edit',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    data: {id: productId},
+                    success: function (response) {
+                        // Handle success response
+                        $("#editProduct-section").html(response)
+                        $("#EditProductModal").modal('show');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        alert('Failed to delete product. Please try again.');
+                    }
+                });
+
+            });
+
+
+            $(".delete-product").on('click', function(){
+                var productId = $(this).data("id");
+
+                // Make the AJAX call
+                $.ajax({
+                    url: '/Admin/Product/Delete',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    data: {id: productId},
+                    success: function (response) {
+                        // Handle success response
+                        alert('Product deleted successfully!');
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                        alert('Failed to delete product. Please try again.');
+                    }
+                });
+
+            });
+        });
 
     </script>
 

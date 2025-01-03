@@ -41,6 +41,24 @@ public class ProductRepository : IProductRepository
         }
     }
 
+    public async Task DeleteProductAsync(Product product, CancellationToken cancellationToken = default)
+    {
+        using (var transaction = await _dbContext.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                _dbContext.Products.Remove(product);
+                await _dbContext.SaveChangesAsync(cancellationToken);
+                await transaction.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+    }
+
     public async Task<IEnumerable<ProductViewModel>> GetAllProductsAsync(CancellationToken cancellationToken = default)
     {
         var allProducts = await _dbContext.Products.Include(p => p.Images)
@@ -53,7 +71,8 @@ public class ProductRepository : IProductRepository
                  Size = Convert.ToInt32(p.Size),
                  Brand = p.Brand,
                  Description = p.Description,
-                 ImageLocation = p.Images.FirstOrDefault().ImagePath
+                 ImageLocation = p.Images.FirstOrDefault().ImagePath,
+                 SubCategoryId = p.SubCategoryId,
              }).AsNoTracking()
              .ToListAsync(cancellationToken);
 
@@ -105,5 +124,30 @@ public class ProductRepository : IProductRepository
               .FirstOrDefaultAsync(cancellationToken);
 
         return productDetails;
+    }
+
+    public async Task<Product> GetProductByIdAsync_(int id, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Products.Where(p=>p.Id == id)
+            .AsNoTracking()
+            .FirstOrDefaultAsync();
+    }
+
+    public async Task UpdateProductAsync(Product product, CancellationToken cancellationToken = default)
+    {
+        using (var transaction = await _dbContext.Database.BeginTransactionAsync())
+        {
+            try
+            {
+                _dbContext.Products.Update(product);
+                await _dbContext.SaveChangesAsync(cancellationToken);
+                await transaction.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
     }
 }

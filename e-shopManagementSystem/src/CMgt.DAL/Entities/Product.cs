@@ -23,6 +23,9 @@ public class Product : Base
     public string Description { get; set; }
 
     // Relationship management
+
+    public int SubCategoryId { get; set; }
+    public SubCategory SubCategory { get; set; }
     public ICollection<Comment> Comments { get; set; }
     public ICollection<ProductImages> Images { get; set; }
 }
