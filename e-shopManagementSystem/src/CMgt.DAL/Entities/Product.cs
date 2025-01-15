@@ -1,7 +1,7 @@
-﻿using CMgt.DAL.Entities.Enums;
+﻿using CMgt.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace CMgt.DAL.Entities;
+namespace CMgt.Domain.Entities;
 
 public class Product : Base
 {

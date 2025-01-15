@@ -1,8 +1,8 @@
-﻿using CMgt.BLL.IServices;
-using CMgt.DAL.Entities;
-using CMgt.DAL.IRepositoriesl;
+﻿using CMgt.Application.IServices;
+using CMgt.Domain.Entities;
+using CMgt.Domain.IRepositories;
 
-namespace CMgt.BLL.Services;
+namespace CMgt.Application.Services;
 
 public class CategoryService : ICategoryService
 {

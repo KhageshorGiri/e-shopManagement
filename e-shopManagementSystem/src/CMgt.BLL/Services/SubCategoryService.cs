@@ -1,8 +1,8 @@
-﻿using CMgt.BLL.IServices;
-using CMgt.DAL.Entities;
-using CMgt.DAL.IRepositories;
+﻿using CMgt.Application.IServices;
+using CMgt.Domain.Entities;
+using CMgt.Domain.IRepositories;
 
-namespace CMgt.BLL.Services;
+namespace CMgt.Application.Services;
 
 public class SubCategoryService : ISubCategoryService
 {

@@ -1,5 +1,5 @@
-﻿using CMgt.DAL.Data;
-using CMgt.DAL.Entities;
+﻿using CMgt.Domain.Entities;
+using CMgt.Infrastrucutre.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

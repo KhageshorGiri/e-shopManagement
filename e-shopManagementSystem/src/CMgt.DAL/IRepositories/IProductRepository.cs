@@ -1,7 +1,7 @@
-﻿using CMgt.DAL.Entities;
+﻿using CMgt.Domain.Entities;
 using CMgt.shared.ViewModels;
 
-namespace CMgt.DAL.IRepositories;
+namespace CMgt.Domain.IRepositories;
 
 public interface IProductRepository
 {

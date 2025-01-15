@@ -1,6 +1,6 @@
-using CMgt.BLL.DependencyConfiguration;
-using CMgt.DAL.Data;
-using CMgt.DAL.Entities;
+using CMgt.Application.DependencyConfiguration;
+using CMgt.Domain.Entities;
+using CMgt.Infrastrucutre.Data;
 using CMgt.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

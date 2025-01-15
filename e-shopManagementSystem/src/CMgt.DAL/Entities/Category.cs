@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CMgt.DAL.Entities;
+namespace CMgt.Domain.Entities;
 
 public class Category : Base
 {

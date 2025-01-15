@@ -1,10 +1,8 @@
-using CMgt.BLL.IServices;
-using CMgt.BLL.Services;
+using CMgt.Application.IServices;
 using CMgt.shared.ViewModels;
 using CMgt.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Security.Claims;
 

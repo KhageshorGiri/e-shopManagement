@@ -1,14 +1,14 @@
 ﻿
-using CMgt.BLL.IServices;
-using CMgt.DAL.Entities;
-using CMgt.DAL.Entities.Enums;
-using CMgt.DAL.IRepositories;
+using CMgt.Application.IServices;
+using CMgt.Domain.Entities;
+using CMgt.Domain.Enums;
+using CMgt.Domain.IRepositories;
 using CMgt.shared.Helpers;
 using CMgt.shared.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using System.Drawing;
 
-namespace CMgt.BLL.Services;
+namespace CMgt.Application.Services;
 
 public class ProdcutService : IProdcutService
 {

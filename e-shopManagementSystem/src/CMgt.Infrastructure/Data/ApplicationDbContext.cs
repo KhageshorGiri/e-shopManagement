@@ -1,10 +1,10 @@
-﻿using CMgt.DAL.Entities;
+﻿using CMgt.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace CMgt.DAL.Data;
+namespace CMgt.Infrastrucutre.Data;
 
 public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {

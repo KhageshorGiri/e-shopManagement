@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <ProjectReference Include="..\CMgt.DAL\CMgt.Domain.csproj" />
+    <ProjectReference Include="..\CMgt.Infrastructure\CMgt.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

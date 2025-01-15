@@ -4,11 +4,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using CMgt.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using CMgt.DAL.Entities;
 
 namespace CMgt.Web.Areas.Identity.Pages.Account
 {

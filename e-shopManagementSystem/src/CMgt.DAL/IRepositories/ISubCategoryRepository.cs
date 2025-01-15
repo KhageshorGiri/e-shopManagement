@@ -1,6 +1,6 @@
-﻿using CMgt.DAL.Entities;
+﻿using CMgt.Domain.Entities;
 
-namespace CMgt.DAL.IRepositories;
+namespace CMgt.Domain.IRepositories;
 
 public interface ISubCategoryRepository
 {

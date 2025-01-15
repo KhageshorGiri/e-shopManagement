@@ -1,5 +1,4 @@
-﻿using CMgt.BLL.IServices;
-using CMgt.BLL.Services;
+﻿using CMgt.Application.IServices;
 using CMgt.shared.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,11 +1,10 @@
-﻿using CMgt.BLL.IServices;
-using CMgt.BLL.Services;
-using CMgt.DAL.IRepositories;
-using CMgt.DAL.IRepositoriesl;
-using CMgt.DAL.Repositories;
+﻿using CMgt.Application.IServices;
+using CMgt.Application.Services;
+using CMgt.Domain.IRepositories;
+using CMgt.Infrastrucutre.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CMgt.BLL.DependencyConfiguration;
+namespace CMgt.Application.DependencyConfiguration;
 
 public static class ServiceDIConfigurationExtension
 {

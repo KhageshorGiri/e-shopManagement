@@ -1,11 +1,10 @@
-﻿
-namespace CMgt.DAL.Entities.Enums;
+﻿namespace CMgt.Domain.Enums;
 
 public enum ProductSize
 {
-    S = 1, 
+    S = 1,
     M = 2,
-    L = 3, 
+    L = 3,
     XL = 4,
     XXL = 5
 }

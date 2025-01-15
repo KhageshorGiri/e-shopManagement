@@ -1,8 +1,7 @@
 ﻿
-using CMgt.DAL.Entities;
 using CMgt.shared.ViewModels;
 
-namespace CMgt.BLL.IServices;
+namespace CMgt.Application.IServices;
 
 public interface IProdcutService
 {

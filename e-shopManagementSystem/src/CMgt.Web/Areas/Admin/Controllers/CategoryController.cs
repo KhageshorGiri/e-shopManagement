@@ -1,5 +1,5 @@
-﻿using CMgt.BLL.IServices;
-using CMgt.DAL.Entities;
+﻿using CMgt.Application.IServices;
+using CMgt.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

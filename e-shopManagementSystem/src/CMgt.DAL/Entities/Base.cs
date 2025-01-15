@@ -1,5 +1,5 @@
 ﻿
-namespace CMgt.DAL.Entities;
+namespace CMgt.Domain.Entities;
 
 public class Base
 {

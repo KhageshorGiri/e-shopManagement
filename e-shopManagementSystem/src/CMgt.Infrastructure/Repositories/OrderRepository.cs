@@ -1,10 +1,10 @@
-﻿using CMgt.DAL.Data;
-using CMgt.DAL.Entities;
-using CMgt.DAL.IRepositories;
+﻿using CMgt.Domain.Entities;
+using CMgt.Domain.IRepositories;
+using CMgt.Infrastrucutre.Data;
 using CMgt.shared.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace CMgt.DAL.Repositories;
+namespace CMgt.Infrastrucutre.Repositories;
 
 public class OrderRepository : IOrderRepository
 {

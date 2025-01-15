@@ -1,6 +1,7 @@
-﻿using CMgt.DAL.Entities;
+﻿
+using CMgt.Domain.Entities;
 
-namespace CMgt.BLL.IServices;
+namespace CMgt.Application.IServices;
 
 public interface ISubCategoryService
 {
