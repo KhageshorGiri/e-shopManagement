@@ -78,6 +78,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eshop.Shared.Abstraction", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eshop.Shared.Infrastructure", "src\shared\eshop.Shared.Infrastructure\eshop.Shared.Infrastructure.csproj", "{76FD4A2E-ED21-4E36-AB9F-8ACAC7CDF8E3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AAuthIdentity", "AAuthIdentity", "{CF573227-06D5-4FEA-9745-953837A0020C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eshop.Auth.Identity", "src\Modules\AAuthIdentity\eshop.Auth.Identity\eshop.Auth.Identity.csproj", "{E8598859-558D-48B1-A1D0-68F3AAD0CB7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -184,6 +188,10 @@ Global
 		{76FD4A2E-ED21-4E36-AB9F-8ACAC7CDF8E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76FD4A2E-ED21-4E36-AB9F-8ACAC7CDF8E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76FD4A2E-ED21-4E36-AB9F-8ACAC7CDF8E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8598859-558D-48B1-A1D0-68F3AAD0CB7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8598859-558D-48B1-A1D0-68F3AAD0CB7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8598859-558D-48B1-A1D0-68F3AAD0CB7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8598859-558D-48B1-A1D0-68F3AAD0CB7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -222,6 +230,8 @@ Global
 		{371B248C-A887-4B81-98C7-B2B65C0EB49D} = {69273733-AF54-4C03-B533-75D9761B0511}
 		{3E9A26C8-6344-4450-8C58-040B7110BC3D} = {0686D47F-DC82-492F-B9D0-BBA4A6414AF3}
 		{76FD4A2E-ED21-4E36-AB9F-8ACAC7CDF8E3} = {0686D47F-DC82-492F-B9D0-BBA4A6414AF3}
+		{CF573227-06D5-4FEA-9745-953837A0020C} = {519A572B-6E3C-4F63-851E-780A752EADE5}
+		{E8598859-558D-48B1-A1D0-68F3AAD0CB7B} = {CF573227-06D5-4FEA-9745-953837A0020C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09B690CB-38DC-4822-8E44-1BAB258282BD}
