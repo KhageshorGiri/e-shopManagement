@@ -1,7 +1,9 @@
 ﻿
 
+using Microsoft.AspNetCore.Identity;
+
 namespace eshop.Auth.Identity.Entities;
 
-internal class ApplicationUser
+internal class ApplicationUser : IdentityUser<int>
 {
 }
