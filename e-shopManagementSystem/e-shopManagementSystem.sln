@@ -25,6 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{519A572B-6E3C-4F63-851E-780A752EADE5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{1D674F07-3F1A-4631-B6E7-7FEB7611811A}"
 EndProject
@@ -46,7 +49,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eshop.Customer.Domain", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eshop.Inventory.Domain", "src\Modules\Inventory\eshop.Inventory.Domain\eshop.Inventory.Domain.csproj", "{F3631F48-D34B-4AD4-B82D-CFBF686AA52E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eshop.Order.DOmain", "src\Modules\Order\eshop.Order.DOmain\eshop.Order.DOmain.csproj", "{0BE63EE6-B0D9-4281-89BF-09C360C77E7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eshop.Order.Domain", "src\Modules\Order\eshop.Order.DOmain\eshop.Order.Domain.csproj", "{0BE63EE6-B0D9-4281-89BF-09C360C77E7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eshop.Payment.Domain", "src\Modules\Payment\eshop.Payment.Domain\eshop.Payment.Domain.csproj", "{E0C71CAB-154C-4EF8-923A-E37C27689038}"
 EndProject
