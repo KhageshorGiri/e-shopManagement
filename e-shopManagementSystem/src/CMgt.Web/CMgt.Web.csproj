@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CMgt.BLL\CMgt.Application.csproj" />
+    <ProjectReference Include="..\Modules\AAuthIdentity\eshop.Auth.Identity\eshop.Auth.Identity.csproj" />
   </ItemGroup>
 
 </Project>
