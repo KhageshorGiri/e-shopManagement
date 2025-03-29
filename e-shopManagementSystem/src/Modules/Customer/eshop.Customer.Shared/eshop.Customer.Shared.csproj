@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eshop.Customer.Core\eshop.Customer.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SharedService\" />
+  </ItemGroup>
+
 </Project>

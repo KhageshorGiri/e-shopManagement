@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace eshop.Customer.Domain.Entity;
+namespace eshop.Customer.Core.Entity;
 
 internal class Customer : BaseEntity
 {

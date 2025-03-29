@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace eshop.Customer.Domain.Entity;
+namespace eshop.Customer.Core.Entity;
 internal class Address : BaseEntity
 {
     [Required]

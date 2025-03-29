@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace eshop.Customer.Application.Extension;
+namespace eshop.Customer.Shared.Extension;
 
 public static class ServiceRegistrationExtension
 {

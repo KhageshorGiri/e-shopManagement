@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 
-namespace eshop.Customer.Infrastructure.Data;
+namespace eshop.Customer.Core.Data;
 
 internal class CustomerDbContext : DbContext
 {
