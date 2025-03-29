@@ -1,5 +1,5 @@
-﻿using CMgt.Domain.Entities;
-using CMgt.Infrastrucutre.Data;
+﻿using eshop.Auth.Identity.DbContext;
+using eshop.Auth.Identity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,11 +15,11 @@ public static class DbSeed
             using (var serviceProvider = app.Services.CreateScope())
             {
                 IServiceProvider provider = serviceProvider.ServiceProvider;
-                ApplicationDbContext context = provider.GetRequiredService<ApplicationDbContext>();
+                AuthDbContext context = provider.GetRequiredService<AuthDbContext>();
 
                 context.Database.EnsureCreated();
 
-                UserManager<User> userManager = provider.GetRequiredService<UserManager<User>>();
+                UserManager<ApplicationUser> userManager = provider.GetRequiredService<UserManager<ApplicationUser>>();
                 RoleManager<IdentityRole<int>> roleManager = provider.GetRequiredService<RoleManager<IdentityRole<int>>>();
 
                 //Seed roles
@@ -28,7 +28,7 @@ public static class DbSeed
                 //Seed admin user
                 if (!await context.Users.AnyAsync())
                 {
-                    User user = new User
+                    ApplicationUser user = new ApplicationUser
                     {
                         UserName = "admin@test.com",
                         Email = "admin@test.com"

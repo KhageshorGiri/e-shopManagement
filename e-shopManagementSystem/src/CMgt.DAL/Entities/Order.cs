@@ -13,7 +13,7 @@ public class Order : Base
     [EnumDataType(typeof(OrderStatus))]
     public OrderStatus Status { get; set; }
 
-    [ForeignKey(nameof(User))]
+    //[ForeignKey(nameof(User))]
     public int UserId { get; set; }
     public User User { get; set; }
 

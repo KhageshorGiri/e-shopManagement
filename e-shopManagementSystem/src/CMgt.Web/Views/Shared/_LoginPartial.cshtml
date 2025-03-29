@@ -1,8 +1,8 @@
-﻿@using CMgt.Domain.Entities
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
+@using eshop.Auth.Identity.Entities
 
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

@@ -4,6 +4,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace eshop.Auth.Identity.Entities;
 
-internal class ApplicationUser : IdentityUser<int>
+public class ApplicationUser : IdentityUser<int>
 {
 }

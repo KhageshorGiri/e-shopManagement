@@ -1,5 +1,4 @@
-﻿using eshop.Auth.Identity.DbContext;
-using eshop.Auth.Identity.Entities;
+﻿using eshop.Auth.Identity.Entities;
 using eshop.Auth.Identity.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -7,20 +6,17 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 
 namespace eshop.Auth.Identity.Service;
-internal class UserService : IUserService
+public class UserService : IUserService
 {
-    private readonly IdentityDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IUserStore<ApplicationUser> _userStore;
     private readonly IUserEmailStore<ApplicationUser> _emailStore;
 
-    public UserService(IdentityDbContext context,
-         UserManager<ApplicationUser> userManager,
+    public UserService(UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
           IUserStore<ApplicationUser> userStore)
     {
-        _context = context;
         _userManager = userManager;
         _signInManager = signInManager;
         _userStore = userStore;
@@ -31,6 +27,15 @@ internal class UserService : IUserService
     public async Task<IList<AuthenticationScheme>> GetExternalAuthenticationSchemesListAsync(CancellationToken cancellationToken = default)
     {
         return (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+    }
+
+    public async Task<UserViewModel> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+        return new UserViewModel
+        {
+            Email = user?.Email
+        };
     }
 
     public async Task<RegisterResponseViewModel> RegisterNewUserAsync(RegisterUserViewMode newUser, CancellationToken cancellationToken = default)
@@ -87,6 +92,45 @@ internal class UserService : IUserService
         return response;
     }
 
+    public async Task LogOutAsync(CancellationToken cancellationToken = default)
+    {
+        await _signInManager.SignOutAsync();
+    }
+
+    public async Task<ResetPasswordResponseViewModel> ResetPasswordAsync(ResetPasswordViewModel input, CancellationToken cancellationToken = default)
+    {
+        var response = new ResetPasswordResponseViewModel();
+        var user = await _userManager.FindByEmailAsync(input.Email);
+        if(user == null)
+        {
+            response.Succeeded = false;
+            return response;
+        }
+        var result = await _userManager.ResetPasswordAsync(user, input.Code, input.Password);
+        if (result.Succeeded)
+        {
+            response.Succeeded = true;
+        }
+        response.Errors = result.Errors;
+        return response;
+    }
+
+    public async Task<ForgetPasswordResponseViewModel> GeneratePasswordResetTokenAsync(string email)
+    {
+        var response = new ForgetPasswordResponseViewModel();
+        var user = await _userManager.FindByEmailAsync(email);
+        //TODO : Verify also is email is verified or not
+        if (user == null)
+        {
+            response.Succeeded = false;
+            return response;
+        }
+        var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+        response.Code = code;
+        return response;
+    }
+
 
 
 
@@ -112,4 +156,5 @@ internal class UserService : IUserService
         }
         return (IUserEmailStore<ApplicationUser>)_userStore;
     }
+
 }

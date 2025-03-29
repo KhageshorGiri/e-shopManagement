@@ -1,12 +1,10 @@
 ﻿using CMgt.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace CMgt.Infrastrucutre.Data;
 
-public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
+public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
        : base(options)
@@ -23,4 +21,10 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
     public DbSet<SubCategory> SubCategories { get; set; }
 
     #endregion
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.HasDefaultSchema("Application");
+        base.OnModelCreating(modelBuilder);
+    }
 }

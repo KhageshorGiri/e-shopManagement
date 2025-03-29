@@ -17,17 +17,13 @@ namespace CMgt.Web.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IUserService _userService;
 
-        public LoginModel(SignInManager<User> signInManager, UserManager<User> userManager,
+        public LoginModel(
             ILogger<LoginModel> logger,
             IUserService userService)
         {
-            _signInManager = signInManager;
-            _userManager = userManager;
             _logger = logger;
             _userService = userService;
         }

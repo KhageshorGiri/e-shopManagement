@@ -1,10 +1,10 @@
 using CMgt.Application.DependencyConfiguration;
-using CMgt.Domain.Entities;
 using CMgt.Infrastrucutre.Data;
 using CMgt.Web;
 using eshop.Auth.Identity;
-using Microsoft.AspNetCore.Identity;
+using eshop.Auth.Identity.DbContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +13,10 @@ var connectionString = builder.Configuration.GetConnectionString("SqlServerConne
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddDefaultTokenProviders()
-    .AddRoles<IdentityRole<int>>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDbContext<AuthDbContext>(options =>
+    options.UseSqlServer(connectionString,
+     dbCntxOpt => dbCntxOpt.MigrationsHistoryTable(HistoryRepository.DefaultTableName, "Indentity")));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
