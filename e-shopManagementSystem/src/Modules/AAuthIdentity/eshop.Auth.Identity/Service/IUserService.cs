@@ -6,9 +6,10 @@ namespace eshop.Auth.Identity.Service;
 public interface IUserService
 {
     Task<IList<AuthenticationScheme>> GetExternalAuthenticationSchemesListAsync(CancellationToken cancellationToken = default);
-    Task<RregisterResponseViewModel> RegisterNewUserAsync(UserViewMode user, CancellationToken cancellationToken = default);
+    Task<RegisterResponseViewModel> RegisterNewUserAsync(RegisterUserViewMode user, CancellationToken cancellationToken = default);
 
     // Login
+    Task<LoginResponseViewModel> LoginAsync(LoginRequestViewModel loginRequest, CancellationToken cancellationToken = default);
 
     // Logout
 

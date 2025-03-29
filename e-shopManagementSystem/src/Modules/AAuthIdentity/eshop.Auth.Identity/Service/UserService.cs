@@ -1,16 +1,10 @@
-﻿
-using Azure.Core;
-using eshop.Auth.Identity.DbContext;
+﻿using eshop.Auth.Identity.DbContext;
 using eshop.Auth.Identity.Entities;
 using eshop.Auth.Identity.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Text;
-using System.Text.Encodings.Web;
 
 namespace eshop.Auth.Identity.Service;
 internal class UserService : IUserService
@@ -33,14 +27,15 @@ internal class UserService : IUserService
         _emailStore = GetEmailStore();
     }
 
+
     public async Task<IList<AuthenticationScheme>> GetExternalAuthenticationSchemesListAsync(CancellationToken cancellationToken = default)
     {
         return (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
     }
 
-    public async Task<RregisterResponseViewModel> RegisterNewUserAsync(UserViewMode newUser, CancellationToken cancellationToken = default)
+    public async Task<RegisterResponseViewModel> RegisterNewUserAsync(RegisterUserViewMode newUser, CancellationToken cancellationToken = default)
     {
-        var response = new RregisterResponseViewModel();
+        var response = new RegisterResponseViewModel();
         var user = CreateUser();
 
         await _userStore.SetUserNameAsync(user, newUser.Email, CancellationToken.None);
@@ -73,8 +68,24 @@ internal class UserService : IUserService
         return response;
     }
 
+    public async Task<LoginResponseViewModel> LoginAsync(LoginRequestViewModel loginRequest, CancellationToken cancellationToken = default)
+    {
+        var response = new LoginResponseViewModel();
+        var result = await _signInManager.PasswordSignInAsync(loginRequest.Email, loginRequest.Password, loginRequest.RememberMe, lockoutOnFailure: false);
 
+        if(result.Succeeded)
+        {
+            var user = await _userManager.FindByEmailAsync(loginRequest.Email);
+            var roles = await _userManager.GetRolesAsync(user);
 
+            response.Succeeded = true;
+            response.Roles = roles;
+            response.RequiresTwoFactor = result.RequiresTwoFactor;
+            response.IsLockedOut = result.IsLockedOut;
+        }
+
+        return response;
+    }
 
 
 

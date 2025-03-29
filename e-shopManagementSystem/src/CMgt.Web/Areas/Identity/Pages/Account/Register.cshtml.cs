@@ -79,7 +79,7 @@ namespace CMgt.Web.Areas.Identity.Pages.Account
             ExternalLogins = await _userService.GetExternalAuthenticationSchemesListAsync();
             if (ModelState.IsValid)
             {
-                var newUser = new UserViewMode
+                var newUser = new RegisterUserViewMode
                 {
                     Email = Input.Email,
                     Password = Input.Password,

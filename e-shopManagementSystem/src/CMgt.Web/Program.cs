@@ -2,6 +2,7 @@ using CMgt.Application.DependencyConfiguration;
 using CMgt.Domain.Entities;
 using CMgt.Infrastrucutre.Data;
 using CMgt.Web;
+using eshop.Auth.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,8 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthModuleDependency();
 
 builder.Services.AddServiceDIConfiguration();
 

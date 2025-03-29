@@ -4,8 +4,11 @@
 
 using System.ComponentModel.DataAnnotations;
 using CMgt.Domain.Entities;
+using eshop.Auth.Identity.Service;
+using eshop.Auth.Identity.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -17,13 +20,16 @@ namespace CMgt.Web.Areas.Identity.Pages.Account
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IUserService _userService;
 
         public LoginModel(SignInManager<User> signInManager, UserManager<User> userManager,
-            ILogger<LoginModel> logger)
+            ILogger<LoginModel> logger,
+            IUserService userService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _logger = logger;
+            _userService = userService;
         }
 
         /// <summary>
@@ -58,26 +64,14 @@ namespace CMgt.Web.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             [EmailAddress]
             public string Email { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
         }
@@ -94,7 +88,7 @@ namespace CMgt.Web.Areas.Identity.Pages.Account
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ExternalLogins = await _userService.GetExternalAuthenticationSchemesListAsync();
 
             ReturnUrl = returnUrl;
         }
@@ -103,32 +97,35 @@ namespace CMgt.Web.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            ExternalLogins = await _userService.GetExternalAuthenticationSchemesListAsync();
 
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
+                var loginReuest = new LoginRequestViewModel
+                {
+                    Email = Input.Email,
+                    Password = Input.Password,
+                    RememberMe = Input.RememberMe
+                };
+
+                var result = await _userService.LoginAsync(loginReuest);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
 
-                    var user = await _userManager.FindByEmailAsync(Input.Email);
-                    var roles = await _userManager.GetRolesAsync(user);
-
                     // Redirect based on role
-                    if (roles.Contains("Admin"))
+                    if (result.Roles.Contains("Admin"))
                     {
                         return RedirectToAction("Dashboard", "Home", new { area="Admin"});
                     }
-                   
                     else
                     {
                         return RedirectToAction("Index", "Home", new { area = "" });
                         //return LocalRedirect(returnUrl);
                     }
-
                 }
                 if (result.RequiresTwoFactor)
                 {
