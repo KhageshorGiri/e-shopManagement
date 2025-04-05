@@ -2,7 +2,7 @@
 
 namespace eshop.Customer.Core.Entity;
 
-internal class Customer : BaseEntity
+public class Customers : BaseEntity
 {
     [Required]
     [StringLength(150, MinimumLength = 4)]

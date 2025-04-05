@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eshop.Customer.Core.Entity;
-internal class Address : BaseEntity
+public class Address : BaseEntity
 {
     [Required]
     [StringLength(50, MinimumLength = 5)]
@@ -26,5 +26,5 @@ internal class Address : BaseEntity
     // Navigation to customer
     [ForeignKey(nameof(Customer))]
     public int CustomerId { get; set; }
-    public Customer Customer { get; set; }
+    public Customers Customer { get; set; }
 }

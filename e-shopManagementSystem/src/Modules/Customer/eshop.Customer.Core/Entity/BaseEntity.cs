@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace eshop.Customer.Core.Entity;
-internal class BaseEntity
+public class BaseEntity
 {
     [Key]
     public int Id { get; set; }
